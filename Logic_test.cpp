@@ -5,7 +5,7 @@ struct Coordonnee{
 	int x;
 	int y;
 };
-
+/*
 int main()
 {
 	int pixel_x = 500;
@@ -36,7 +36,7 @@ int rebound(int x)
 	y = abs(a*(x*x) + b*x + c);
 	return y;
 }
-
+*/
 // logique d'en haut ou logique d'en bas
 int main()
 {
