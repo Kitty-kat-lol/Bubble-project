@@ -6,61 +6,71 @@
 
 Bulle :: Bulle()
 {
-	Coordonnee bulle_xy;
-	int bulle_size = 1;
-	int x_start_bulle = 300;
+	bulle_size = 1;
 	bulle_xy.x = 300;
-	int y_start_bulle = 300;
 	bulle_xy.y = 300;
-	int vitesse_initiale_y = 0;
-	int vitesse_x = 3;
-	int acceleration_y = -1;
+	vitesse_initiale_y = 0;
+	vitesse_y = vitesse_initiale_y;
+	vitesse_x = 10;
+	acceleration_y = 3;
 }
 
-Bulle :: Bulle(int size, int x_start_bulle, int y_start_bulle, int vitesse_initiale_y, int vitesse_x)
+Bulle :: Bulle(int size, int x_start_bulle, int y_start_bulle, int vitesse_start_y, int vit_x)
 {
-
+	bulle_size = size;
+	bulle_xy.x = x_start_bulle;
+	bulle_xy.y = y_start_bulle;
+	vitesse_initiale_y = vitesse_start_y;
+	vitesse_y = vitesse_initiale_y;
+	vitesse_x = vit_x;
+	acceleration_y = 3;
 }
 
 Bulle :: ~Bulle(){}
 
 void Bulle :: afficher_bulle()
 {
-
+	int pixel_x = 500; // à retirer dès que la connection avec display est etablie
+	int pixel_y = 500; // à retirer dès que la connection avec display est etablie
+	int i = 0;
+	int j = 0;
+	for (i = 0;i < 500; i ++)
+	{
+		for (j = 0;j < 500; i ++)
+		{
+			
+		}
+	}
 }
 
-Coordonnee Bulle :: rebound(int temps, int step, int vitesse_initiale_y, Coordonnee bulle_xy)
+Coordonnee Bulle :: rebound(int temps, int step, Coordonnee reb_xy)
 {
-	vitesse_initiale_y = 0;
-	int vitesse_x = 3;
-	bulle_xy.x = 300;
-	bulle_xy.y = 300;
 	int pixel_x = 500; // à retirer dès que la connection avec display est etablie
-	if (bulle_xy.x + (vitesse_x * (step)) <= 1 || bulle_xy.x + (vitesse_x * (step)) >= (pixel_x - 1))
+	if (reb_xy.x + (vitesse_x * (step)) <= 1 || reb_xy.x + (vitesse_x * (step)) >= (pixel_x - 1))
 	{
 		vitesse_x = vitesse_x * (-1);	// si tu arrive aux limites du terrain change de direction.
 	}
-	bulle_xy.x = bulle_xy.x + (vitesse_x * (step));
+	reb_xy.x = reb_xy.x + (vitesse_x * (step));
 
-	if (temps == 0)
+	vitesse_y = vitesse_y - (acceleration_y * step);
+	if (reb_xy.y + (vitesse_y * step) < 0)
 	{
-		int vitesse_y = vitesse_initiale_y;
-	}
-	int acceleration_y = -1; //pixel/secondes2
-	int vitesse_y = vitesse_y + (acceleration_y * step);
-	if (bulle_xy.y + (vitesse_y * step) < 0)
-	{
-		bulle_xy.y = 1;
+		reb_xy.y = 1;
 		vitesse_y = vitesse_y * (-1); //si la bulle arrive au plancher elle rebondit
 	}
 	else
 	{
-		bulle_xy.y = bulle_xy.y + (vitesse_y * step);
+		reb_xy.y = reb_xy.y + (vitesse_y * step);
 	}
-	return bulle_xy;
+	return reb_xy;
 }
 
 void Bulle :: break_bulle()
 {
 
+}
+
+Coordonnee Bulle :: get_xy()
+{
+	return bulle_xy;
 }

@@ -8,7 +8,7 @@ Logic_test: Logic_test.o Bulle.o
 
 #Objets
 
-logic_test.o: Logic_test.cpp Bulle.h Coordonne.h
+Logic_test.o: Logic_test.cpp Bulle.h Coordonne.h
 	g++ Logic_test.cpp -g -c
 
 Bulle.o: Bulle.cpp Bulle.h Coordonne.h
