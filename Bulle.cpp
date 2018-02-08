@@ -38,7 +38,12 @@ void Bulle :: afficher_bulle()
 	{
 		for (j = 0;j < 500; i ++)
 		{
-			
+			if (bulle_xy.x == i && bulle_xy.y == j)
+			{
+				std::cout << "O";
+			}
+			else
+			std::cout << " ";
 		}
 	}
 }
@@ -62,6 +67,7 @@ Coordonnee Bulle :: rebound(int temps, int step, Coordonnee reb_xy)
 	{
 		reb_xy.y = reb_xy.y + (vitesse_y * step);
 	}
+	bulle_xy = reb_xy;
 	return reb_xy;
 }
 
