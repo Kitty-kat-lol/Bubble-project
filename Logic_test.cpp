@@ -9,7 +9,7 @@ int main()
 	int pixel_x = 500;
 	int pixel_y = 500;
 	int temps = 0;
-	int step = 20; // step en secondes
+	int step = 2; // step en secondes
 	Bulle bulle1;
 	Coordonnee position;
 	int x_depart_bulle = 50;	//position de départ de bulle
@@ -19,9 +19,11 @@ int main()
 	{
 		position = bulle1.rebound(temps, step, vitesse_initiale_y, position);
 		// bulle1.afficher_bulle();
-		//temps = temps + step;
+		temps = temps + step;
 		std::cout << "X" << position.x << "Y" << position.y << std::endl;
 		 // system.msleep(&step);
+		 std::cout << temps << std::endl;
+		 temps = -1;
 	}
 	return 0;
 }
