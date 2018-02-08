@@ -11,22 +11,22 @@ class Bulle
 {
 	public:
 		Bulle();
-		Bulle(int size, int x_start_bulle, int y_start_bulle, int vitesse_initiale_y, int vitesse x);
+		Bulle(int size, int x_start_bulle, int y_start_bulle, int vitesse_initiale_y, int vitesse_x);
 		~Bulle();
-	
+
 		void afficher_bulle();
-		Coordonnee rebound(int temps, int step, int vitesse_initiale_y, Coordonnee bulle_xy);
+		Coordonnee rebound(double temps, double step, int vitesse_initiale_y, Coordonnee bulle_xy);
 		void break_bulle();
-		
+
 	private:
-		Coordonne bulle_xy;
+		Coordonnee bulle_xy;
 		int bulle_size;
 		int x_start_bulle;
 		int y_start_bulle;
 		int vitesse_initiale_y;
-		int vitesse x;
+		int vitesse_x;
 		int acceleration_y;
-}
+};
 
 
 

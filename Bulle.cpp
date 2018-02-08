@@ -4,31 +4,32 @@
 #include "Bulle.h"
 
 
-Bulle()
+Bulle :: Bulle()
 {
-	
+
 }
 
-Bulle(int size, int x_start_bulle, int y_start_bulle, int vitesse_initiale_y, int vitesse x)
+Bulle :: Bulle(int size, int x_start_bulle, int y_start_bulle, int vitesse_initiale_y, int vitesse_x)
 {
-	
+
 }
 
-~Bulle(){}
+Bulle :: ~Bulle(){}
 
-void afficher_bulle()
+void Bulle :: afficher_bulle()
 {
-	
+
 }
 
-Coordonnee rebound(int temps, int step, int vitesse_initiale_y)
+Coordonnee Bulle :: rebound(double temps, double step, int vitesse_initiale_y, Coordonnee bulle_xy)
 {
-	if (bulle_xy.x + (vitesse * step) <= 1 || bulle_xy.x + (vitesse * step) >= (pixel_x - 1))
+	int pixel_x; // à retirer dès que la connection avec display est etablie
+	if (bulle_xy.x + (vitesse_x * step) <= 1 || bulle_xy.x + (vitesse_x * step) >= (pixel_x - 1))
 	{
-		vitesse = vitesse * (-1);	// si tu arrive aux limites du terrain change de direction.
+		vitesse_x = vitesse_x * (-1);	// si tu arrive aux limites du terrain change de direction.
 	}
-	bulle_xy.x = bulle_xy.x + (vitesse * step);
-	
+	bulle_xy.x = bulle_xy.x + (vitesse_x * step);
+
 	if (temps == 0)
 	{
 		int vitesse_y = vitesse_initiale_y;
@@ -47,7 +48,7 @@ Coordonnee rebound(int temps, int step, int vitesse_initiale_y)
 	return bulle_xy;
 }
 
-void break_bulle()
+void Bulle :: break_bulle()
 {
-	
+
 }
