@@ -6,7 +6,15 @@
 
 Bulle :: Bulle()
 {
-
+	Coordonnee bulle_xy;
+	int bulle_size = 1;
+	int x_start_bulle = 300;
+	bulle_xy.x = x_start_bulle;
+	int y_start_bulle = 300;
+	bulle_xy.y = y_start_bulle;
+	int vitesse_initiale_y = 0;
+	int vitesse_x = 50;
+	int acceleration_y = -50;
 }
 
 Bulle :: Bulle(int size, int x_start_bulle, int y_start_bulle, int vitesse_initiale_y, int vitesse_x)
