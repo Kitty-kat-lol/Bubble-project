@@ -7,12 +7,12 @@
 Bulle :: Bulle()
 {
 	bulle_size = 1;
-	bulle_xy.x = 300;
-	bulle_xy.y = 300;
+	bulle_xy.x = 15;
+	bulle_xy.y = 7;
 	vitesse_initiale_y = 0;
 	vitesse_y = vitesse_initiale_y;
-	vitesse_x = 10;
-	acceleration_y = 3;
+	vitesse_x = 1;
+	acceleration_y = 1;
 }
 
 Bulle :: Bulle(int size, int x_start_bulle, int y_start_bulle, int vitesse_start_y, int vit_x)
@@ -28,30 +28,29 @@ Bulle :: Bulle(int size, int x_start_bulle, int y_start_bulle, int vitesse_start
 
 Bulle :: ~Bulle(){}
 
-void Bulle :: afficher_bulle()
+void Bulle :: afficher_bulle(int largeur, int hauteur)
 {
-	int pixel_x = 500; // à retirer dès que la connection avec display est etablie
-	int pixel_y = 500; // à retirer dès que la connection avec display est etablie
 	int i = 0;
 	int j = 0;
-	for (i = 0;i < 500; i ++)
+	std::clear;
+	for (i = 0;i < hauteur; i ++)
 	{
-		for (j = 0;j < 500; i ++)
+		for (j = 0;j < largeur; j ++)
 		{
-			if (bulle_xy.x == i && bulle_xy.y == j)
+			if ((bulle_xy.x == j) && ((hauteur - bulle_xy.y) == i))
 			{
 				std::cout << "O";
 			}
 			else
-			std::cout << " ";
+			std::cout << ".";
 		}
+		std::cout << std::endl;
 	}
 }
 
-Coordonnee Bulle :: rebound(int temps, int step, Coordonnee reb_xy)
+Coordonnee Bulle :: rebound(int temps, int step, Coordonnee reb_xy, int max_x)
 {
-	int pixel_x = 500; // à retirer dès que la connection avec display est etablie
-	if (reb_xy.x + (vitesse_x * (step)) <= 1 || reb_xy.x + (vitesse_x * (step)) >= (pixel_x - 1))
+	if (reb_xy.x + (vitesse_x * (step)) <= 1 || reb_xy.x + (vitesse_x * (step)) >= (max_x - 1))
 	{
 		vitesse_x = vitesse_x * (-1);	// si tu arrive aux limites du terrain change de direction.
 	}
