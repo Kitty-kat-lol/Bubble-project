@@ -32,7 +32,7 @@ void Bulle :: afficher_bulle(int largeur, int hauteur)
 {
 	int i = 0;
 	int j = 0;
-	std::clear;
+	// Clear the cout needed here 
 	for (i = 0;i < hauteur; i ++)
 	{
 		for (j = 0;j < largeur; j ++)
