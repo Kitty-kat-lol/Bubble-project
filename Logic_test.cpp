@@ -19,7 +19,7 @@ int main()
 	{
 		position = bulle1.rebound(temps, step, vitesse_initiale_y, position);
 		// bulle1.afficher_bulle();
-		temps = temps + step;
+		//temps = temps + step;
 		std::cout << "X" << position.x << "Y" << position.y << std::endl;
 		 // system.msleep(&step);
 	}
