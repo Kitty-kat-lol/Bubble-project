@@ -8,8 +8,8 @@ int main()
 	//Display()	grid;
 	int pixel_x = 500;
 	int pixel_y = 500;
-	double temps = 0;
-	double step = 0.02; // step en secondes
+	int temps = 0;
+	int step = 20; // step en secondes
 	Bulle bulle1;
 	Coordonnee position;
 	int x_depart_bulle = 50;	//position de départ de bulle
@@ -18,10 +18,10 @@ int main()
 	while (temps != -1)		// quand la boule est detruite alors temps = -1
 	{
 		position = bulle1.rebound(temps, step, vitesse_initiale_y, position);
-		bulle1.afficher_bulle();
+		// bulle1.afficher_bulle();
 		temps = temps + step;
-		std::cout << position.x << position.y << std::endl;
-		// system.sleep(step);
+		std::cout << "X" << position.x << "Y" << position.y << std::endl;
+		 // system.msleep(&step);
 	}
 	return 0;
 }

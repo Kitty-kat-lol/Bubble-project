@@ -15,7 +15,7 @@ class Bulle
 		~Bulle();
 
 		void afficher_bulle();
-		Coordonnee rebound(double temps, double step, int vitesse_initiale_y, Coordonnee bulle_xy);
+		Coordonnee rebound(int temps, int step, int vitesse_initiale_y, Coordonnee bulle_xy);
 		void break_bulle();
 
 	private:
