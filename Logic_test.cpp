@@ -6,7 +6,8 @@
 #include "Frame.h"
 #include "Bulle.h"
 #include <unistd.h>
-#include <conio.h>
+//#include <conio.h>
+//#include <windows.h>
 
 using namespace std;
 
@@ -28,7 +29,7 @@ int main()
 	char clav;
 	while (temps != -1)		// quand la boule est detruite alors temps = -1
 	{
-		if (kbhit())
+		/*if (kbhit())
 		{
 			getch(clav);
 			if (clav == 'a')
@@ -42,6 +43,7 @@ int main()
 				player.move(clav);
 		}
 		std::cin.get(clav);
+		*/
 		if (clav == 'a')
 		{
 			clav = 'l';
@@ -71,6 +73,7 @@ int main()
 		temps = temps + step;
 		std::cout << "X" << position.x << "Y" << position.y << std::endl;
 		usleep(65000);
+		//Sleep(65)
 		std::cout << temps << std::endl;
 	}
 	return 0;
