@@ -70,7 +70,7 @@ void Frame::print_test_table()
 
 void Frame::print_test_player()
 {
-	Coordonnee actual_position = Player.get_position();
+	Coordonnee actual_position = player.get_position();
 	table[39-actual_position.y][actual_position.x] = 'p';
 	print_test_table();
 	reset_frame();

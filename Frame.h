@@ -22,7 +22,7 @@ public:
 	void reset_frame();
 	int get_x();
 	int get_y();
-	Player Player;
+	Player player;
 private:
 
 	char table[41][169];
