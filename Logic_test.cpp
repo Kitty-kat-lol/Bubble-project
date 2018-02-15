@@ -30,7 +30,7 @@ int main()
 	{
 		if (kbhit())
 		{
-			clav = getch();
+			getch(clav);
 			if (clav == 'a')
 			{
 				clav = 'l';
@@ -40,7 +40,17 @@ int main()
 			{
 				clav = 'r';
 				player.move(clav);
-			}
+		}
+		std::cin.get(clav);
+		if (clav == 'a')
+		{
+			clav = 'l';
+			player.move(clav);
+		}
+		else if (clav == 'd')
+		{
+			clav = 'r';
+			player.move(clav);
 		}
 		position = bulle1.rebound(temps, step, position, pixel_x);
 		bulle1.afficher_bulle(pixel_x, pixel_y);
