@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Bulle.h"
 #include "Coordonne.h"
+#include <unistd.h>
 
 int main()
 {
@@ -19,7 +20,7 @@ int main()
 		bulle1.afficher_bulle(pixel_x, pixel_y);
 		temps = temps + step;
 		std::cout << "X" << position.x << "Y" << position.y << std::endl;
-		 // system.msleep(&step);
+		usleep(50000);
 		std::cout << temps << std::endl;
 	}
 	return 0;

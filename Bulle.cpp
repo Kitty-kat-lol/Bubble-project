@@ -8,7 +8,7 @@ Bulle :: Bulle()
 {
 	bulle_size = 1;
 	bulle_xy.x = 15;
-	bulle_xy.y = 7;
+	bulle_xy.y = 15;
 	vitesse_initiale_y = 0;
 	vitesse_y = vitesse_initiale_y;
 	vitesse_x = 1;
@@ -32,9 +32,10 @@ void Bulle :: afficher_bulle(int largeur, int hauteur)
 {
 	int i = 0;
 	int j = 0;
-	// Clear the cout needed here 
+	// Clear the cout needed here
 	for (i = 0;i < hauteur; i ++)
 	{
+		std::cout << 'I';
 		for (j = 0;j < largeur; j ++)
 		{
 			if ((bulle_xy.x == j) && ((hauteur - bulle_xy.y) == i))
@@ -42,9 +43,9 @@ void Bulle :: afficher_bulle(int largeur, int hauteur)
 				std::cout << "O";
 			}
 			else
-			std::cout << ".";
+			std::cout << " ";
 		}
-		std::cout << std::endl;
+		std::cout << 'I' << std::endl;
 	}
 }
 
