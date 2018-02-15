@@ -2,25 +2,27 @@
 
 #include "Arrow.h"
 #include "Player.h"
-#include "Coord.h"
+#include "Coordonne.h"
 #include "Frame.h"
+#include "Bulle.h"
+#include <unistd.h>
 
 using namespace std;
 
 int main()
 {
-	int status = 0;//Utilisé pour contrôler quelle fonction d'affichage utilisée
+	int status = 0;//Utilisï¿½ pour contrï¿½ler quelle fonction d'affichage utilisï¿½e
 
-	Frame Frame1;//Création du frame du jeu
-	//Début des tests
+	Frame Frame1;//Crï¿½ation du frame du jeu
+	//Dï¿½but des tests
 	cout << "Console test" << endl;
-	//Entrez 1 pour débuter chaîne de test
+	//Entrez 1 pour dï¿½buter chaï¿½ne de test
 	cout << "Resize window..." << endl << "If ready enter 1";
 
 	while (1)
 	{
 		cin >> status;//Demande la valeur du test
-		//Test de la fenêtre blanche
+		//Test de la fenï¿½tre blanche
 		/*if(status == 1)
 		{
 			Frame1.print_test_blank();
@@ -57,6 +59,6 @@ int main()
 		{
 			return 0;
 		}
-		status = 0;		
+		status = 0;
 	}
 }

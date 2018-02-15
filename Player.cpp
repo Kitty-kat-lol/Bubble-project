@@ -16,7 +16,7 @@ Arrow Player::shoot_arrow()
 	return Arrow;
 }
 
-Coord Player::move(char direction)
+Coordonnee Player::move(char direction)
 {
 	int displacement = 5;
 	if (direction == 'l')
@@ -32,7 +32,7 @@ Coord Player::move(char direction)
 	return position;
 }
 
-Coord Player::get_position()
+Coordonnee Player::get_position()
 {
 	return position;
 }
@@ -41,5 +41,3 @@ void Player::set_state(char command)
 {
 	state = command;
 }
-
-

@@ -11,13 +11,13 @@ public:
 	Player();
 	~Player();
 	Arrow shoot_arrow();
-	Coord move(char direction);
-	Coord get_position();
+	Coordonnee move(char direction);
+	Coordonnee get_position();
 	void set_state(char command);
 private:
 	char state;
 	Arrow Arrow;
 protected:
-	Coord position;
+	Coordonnee position;
 };
 #endif

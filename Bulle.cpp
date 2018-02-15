@@ -8,10 +8,10 @@ Bulle :: Bulle()
 {
 	bulle_size = 1;
 	bulle_xy.x = 15;
-	bulle_xy.y = 15;
+	bulle_xy.y = 30;
 	vitesse_initiale_y = 0;
 	vitesse_y = vitesse_initiale_y;
-	vitesse_x = 1;
+	vitesse_x = 2;
 	acceleration_y = 1;
 }
 

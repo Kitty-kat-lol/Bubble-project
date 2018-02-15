@@ -17,6 +17,16 @@ Frame::~Frame()
 {
 }
 
+int Frame::get_x()
+{
+	return dimension.x;
+}
+
+int Frame::get_y()
+{
+	return dimension.y;
+}
+
 void Frame::refresh()
 {
 	//For final game
@@ -60,7 +70,7 @@ void Frame::print_test_table()
 
 void Frame::print_test_player()
 {
-	Coord actual_position = Player.get_position();
+	Coordonnee actual_position = Player.get_position();
 	table[39-actual_position.y][actual_position.x] = 'p';
 	print_test_table();
 	reset_frame();
@@ -76,4 +86,3 @@ void Frame::reset_frame()
 		}
 	}
 }
-

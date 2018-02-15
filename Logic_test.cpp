@@ -1,14 +1,23 @@
-#include <math.h>
 #include <iostream>
-#include "Bulle.h"
+
+#include "Arrow.h"
+#include "Player.h"
 #include "Coordonne.h"
+#include "Frame.h"
+#include "Bulle.h"
 #include <unistd.h>
+
+using namespace std;
+
 
 int main()
 {
-	//Display()	grid;
-	int pixel_x = 50;
-	int pixel_y = 20;
+	cout << "Resize window..." << endl << "If ready enter 1";
+	int ready = 0;
+	cin >> ready;
+	Frame frame1;//Creation du frame du jeu
+	int pixel_x = frame1.get_x();
+	int pixel_y = frame1.get_y();
 	int temps = 0;
 	int step = 1; // step en secondes
 	Bulle bulle1;
@@ -18,9 +27,10 @@ int main()
 	{
 		position = bulle1.rebound(temps, step, position, pixel_x);
 		bulle1.afficher_bulle(pixel_x, pixel_y);
+		std::cout << std::endl;
 		temps = temps + step;
 		std::cout << "X" << position.x << "Y" << position.y << std::endl;
-		usleep(50000);
+		usleep(65000);
 		std::cout << temps << std::endl;
 	}
 	return 0;
