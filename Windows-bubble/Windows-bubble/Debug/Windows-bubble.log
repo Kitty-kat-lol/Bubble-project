@@ -1,1 +1,2 @@
-﻿LINK : fatal error LNK1104: cannot open file 'C:\Users\Kitty\Documents\GitHub\Bubble-project\Windows-bubble\Debug\Windows-bubble.exe'
+﻿  Windows-bubble.cpp
+  Windows-bubble.vcxproj -> C:\Users\Kitty\Documents\GitHub\Bubble-project\Windows-bubble\Debug\Windows-bubble.exe
