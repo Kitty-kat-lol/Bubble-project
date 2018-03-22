@@ -43,7 +43,9 @@ int main()
 	if (carte.estOk())
 	{
 		//cout << carte.estOk() << endl;
-		cout << "FPGA detected!" << endl;
+		cout << "FPGA detected!, LD0 should be on..." << endl;
+		carte.ecrireRegistre(registres.nreg_ecri_led, 1);
+		Sleep(10);
 	}
 	
 	
@@ -51,7 +53,6 @@ int main()
 		
 	
 	Frame frame1;//Creation du frame du jeu
-
 	
 	
 	//Determine max x and y for frame
@@ -70,41 +71,53 @@ int main()
 	int lecture_bouton = 0;
 	int switch_state = 0;
 
-	carte.ecrireRegistre(registres.nreg_ecri_led, 1);
-	Sleep(10);
+
+	//Choisi le mode à débogger: FPGA ou JEU
+	/*cout << "To test game, enter 1" << endl;
+	cout << "To test FPGA, enter 2" << endl;
+	int input;
+	cin >> input;
+	switch (input){
+	case 1:
+		play_game();
+	case 2:
+		debug_FPGA();
+	};*/
+		
+
+
 	
-	while (1)
-	{
-		carte.lireRegistre(registres.nreg_lect_swt, switch_state);
-		
-
-		int can0 = 0;
-		int can1 = 0;
-		int can2 = 0;
-		int can3 = 0;
-
-		carte.lireRegistre(registres.nreg_lect_can0, can0);
-		carte.lireRegistre(registres.nreg_lect_can1, can1);
-		carte.lireRegistre(registres.nreg_lect_can2, can2);
-		carte.lireRegistre(registres.nreg_lect_can3, can3);
-
-		cout << can0 << endl;
-		cout << can1 << endl;
-		cout << can2 << endl;
-		cout << can3 << endl;
-
-		
-		system("Pause");
-		/*cin >> clav;
-		if (clav == '#')
+	
+	while (1)//À mettre en commentaire pour jouer au jeu
 		{
+			int can0 = 0;
+			int can1 = 0;
+			int can2 = 0;
+			int can3 = 0;
+
+			carte.lireRegistre(registres.nreg_lect_can0, can0);
+			carte.lireRegistre(registres.nreg_lect_can1, can1);
+			carte.lireRegistre(registres.nreg_lect_can2, can2);
+			carte.lireRegistre(registres.nreg_lect_can3, can3);
+
+			cout << can0 << endl;
+			cout << can1 << endl;
+			cout << can2 << endl;
+			cout << can3 << endl;
+
+			system("Pause");
+
+			/*cin >> clav;
+			if (clav == '#')
+			{
 			break;
-		}
-		else
-		{
+			}
+			else
+			{
 			clav = ' ';
-		}*/
+			}*/
 	}
+	
 
 	//Début du programme
 	while (temps != -1)		// quand la boule est detruite alors temps = -1
@@ -163,7 +176,7 @@ int main()
 			break;
 		}
 		
-		Sleep(100);//Augmente la performance du terminal, un peu
+		Sleep(60);//Augmente la performance du terminal, un peu
 		//cout << temps;//Pour déboggage
 	}
 	system("CLS");

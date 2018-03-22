@@ -27,6 +27,7 @@ public:
 	bool lireRegistre(int registre, int &valeur);
 	bool ecrireRegistre(int registre, int valeur);
 	void sleep(unsigned int millisecondes = 10);
+	
 
 	bool estOk();
 	const char * messageErreur();
@@ -35,5 +36,4 @@ private:
     char msgErreur[1024];
 	unsigned long hif;
 };
-
 #endif
