@@ -1,11 +1,11 @@
-//
-//
-#ifndef VECTEUR
-#define VECTEUR
+
+#ifndef BULLE_H
+#define BULLE_H
 
 #include <iostream>
-#include <math.h>
 #include "Coordonne.h"
+
+using namespace std;
 
 class Bulle
 {
@@ -37,14 +37,5 @@ class Bulle
 		Coordonnee bulle_xy;
 
 };
-
-
-
-
-
-
-
-
-
 
 #endif

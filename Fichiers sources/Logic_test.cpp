@@ -1,3 +1,4 @@
+
 #include <iostream>
 
 #include "Arrow.h"
@@ -14,8 +15,19 @@
 #include "Registres.h"
 #include <wincon.h>
 
+void debugFPGA();
+void play_game();
 
 using namespace std;
+
+//Varaibales
+CommunicationFPGA carte;
+Registres registres;
+
+//Variables de controles
+char clav = '0';
+int lecture_bouton = 0;
+int switch_state = 0;
 
 
 
@@ -28,10 +40,6 @@ int main()
 	CONSOLE_CURSOR_INFO lpCursor;
 	lpCursor.bVisible = false;
 
-	
-	//Début du programme
-	CommunicationFPGA carte;
-	Registres registres;
 	
 
 	//Vérification de la communication FPGA
@@ -49,12 +57,71 @@ int main()
 	}
 	
 	
-	system("Pause");//Fait une pause vant le début du jeu
-		
+	system("Pause");//Fait une pause avant les options de sélection	
 	
+
+
+	//Choisi le mode à débogger: FPGA ou JEU
+	cout << "To test game, enter 1" << endl;
+	cout << "To test FPGA, enter 2" << endl;
+	int input;
+	cin >> input;
+	switch (input){
+	case 1:
+		play_game();
+		break;
+	case 2:
+		debugFPGA();
+		break;
+	default:
+		cout << "Bad input, try again";
+		break;
+	};
+	
+	return 0;
+}
+
+
+void debugFPGA()
+	{
+	while (1)//À mettre en commentaire pour jouer au jeu
+	{
+		int can0 = 0;
+		int can1 = 0;
+		int can2 = 0;
+		int can3 = 0;
+
+		carte.lireRegistre(registres.nreg_lect_can0, can0);
+		carte.lireRegistre(registres.nreg_lect_can1, can1);
+		carte.lireRegistre(registres.nreg_lect_can2, can2);
+		carte.lireRegistre(registres.nreg_lect_can3, can3);
+
+		cout << can0 << endl;
+		cout << can1 << endl;
+		cout << can2 << endl;
+		cout << can3 << endl;
+
+		system("Pause");
+
+		cin >> clav;
+
+		if (clav == '#')
+		{
+			break;
+		}
+
+		else
+		{
+			clav = ' ';
+		}
+	}
+}
+
+void play_game()
+{
 	Frame frame1;//Creation du frame du jeu
-	
-	
+
+
 	//Determine max x and y for frame
 	int pixel_x = frame1.get_x();
 	int pixel_y = frame1.get_y();
@@ -62,65 +129,12 @@ int main()
 	//Commence le timer et le step time
 	int temps = 0;
 	int step = 1; // step en secondes
-	
-	//Nécessaire pour l'actualisation de la position de la bulle
+
+				  //Nécessaire pour l'actualisation de la position de la bulle
 	Coordonnee position;
 	position = frame1.bulle.get_xy();
-	
-	char clav = '0';//Utilisé pour contrôlé le player
-	int lecture_bouton = 0;
-	int switch_state = 0;
-
-
-	//Choisi le mode à débogger: FPGA ou JEU
-	/*cout << "To test game, enter 1" << endl;
-	cout << "To test FPGA, enter 2" << endl;
-	int input;
-	cin >> input;
-	switch (input){
-	case 1:
-		play_game();
-	case 2:
-		debug_FPGA();
-	};*/
-		
-
-
-	
-	
-	while (1)//À mettre en commentaire pour jouer au jeu
-		{
-			int can0 = 0;
-			int can1 = 0;
-			int can2 = 0;
-			int can3 = 0;
-
-			carte.lireRegistre(registres.nreg_lect_can0, can0);
-			carte.lireRegistre(registres.nreg_lect_can1, can1);
-			carte.lireRegistre(registres.nreg_lect_can2, can2);
-			carte.lireRegistre(registres.nreg_lect_can3, can3);
-
-			cout << can0 << endl;
-			cout << can1 << endl;
-			cout << can2 << endl;
-			cout << can3 << endl;
-
-			system("Pause");
-
-			/*cin >> clav;
-			if (clav == '#')
-			{
-			break;
-			}
-			else
-			{
-			clav = ' ';
-			}*/
-	}
-	
-
 	//Début du programme
-	while (temps != -1)		// quand la boule est detruite alors temps = -1
+	while (1)		// quand la boule est detruite alors temps = -1
 	{
 		carte.lireRegistre(registres.nreg_lect_stat_btn, lecture_bouton);//Lit le registre des boutons
 
@@ -160,9 +174,9 @@ int main()
 		}
 
 		position = frame1.bulle.rebound(temps, step, position, pixel_x);//actualise la position de la flèche			
-		
+
 		frame1.refresh();//Efface et affiche toute
-		
+
 		temps = temps + step;//Augment le temps d'un step défini afin d'actualiser la postion de la bulle par après
 
 		if (frame1.player.get_life() == 0 || clav == '#')
@@ -175,9 +189,9 @@ int main()
 			frame1.set_win(true);
 			break;
 		}
-		
+
 		Sleep(60);//Augmente la performance du terminal, un peu
-		//cout << temps;//Pour déboggage
+				  //cout << temps;//Pour déboggage
 	}
 	system("CLS");
 	//Fin de la partie
@@ -189,9 +203,6 @@ int main()
 	{
 		cout << "THE BUBBLE HAS BEEN DESTROYED" << endl;
 	}
-	
+
 	system("Pause");
-	return 0;
 }
-
-

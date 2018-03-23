@@ -10,8 +10,8 @@ Frame::Frame()
 	//Kate:			x et y
 	//P-A:			x et y
 
-	dimension.x = 168;//Max width
-	dimension.y = 43;//Max height
+	dimension.x = 237;//Max width
+	dimension.y = 62;//Max height
 	for (int i = 0; i < dimension.y;i++)
 	{
 		for (int j = 0; j < dimension.x; j++)
@@ -45,6 +45,8 @@ void Frame::set_win(bool command)
 {
 	win = command;
 }
+
+
 
 void Frame::refresh()
 {

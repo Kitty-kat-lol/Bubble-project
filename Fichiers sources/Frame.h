@@ -47,11 +47,12 @@ public:
 	//Change la valeur des attributs
 	void set_win(bool command);
 
+
 	Player player;
 	Bulle bulle;
 	string print;
 private:
-	char table[43][169];//à modifier selon l'ordi utilisé!
+	char table[62][237];//à modifier selon l'ordi utilisé!
 	bool win;
 protected:
 	Coordonnee dimension;
