@@ -20,6 +20,7 @@ Frame::Frame()
 		}
 	}
 	print = " ";
+	score = 0;
 }
 
 Frame::~Frame()
@@ -41,9 +42,19 @@ bool Frame::get_win()
 	return win;
 }
 
+int Frame::get_score()
+{
+	return score;
+}
+
 void Frame::set_win(bool command)
 {
 	win = command;
+}
+
+void Frame::calculate_score()
+{
+	score += 25;
 }
 
 
@@ -56,6 +67,9 @@ void Frame::refresh()
 	print_test_arrow();
 	print_test_player();
 	print_test_bulle();
+
+	//Incrémente le score
+	calculate_score();
 
 	//Affiche le tableau
 	print_test_table();
@@ -134,8 +148,19 @@ void Frame::print_test_bulle()//Assigne l'épaisseur de la bulle à sa position
 	else
 		layers = 'O';
 
+
+
 	Coordonnee actual_position = bulle.get_xy();
-	table[dimension.y - actual_position.y-1][actual_position.x] = layers;
+	table[dimension.y - actual_position.y][actual_position.x] = layers;
+
+	table[(dimension.y - actual_position.y)-2][(actual_position.x)] = '#';
+	table[(dimension.y - actual_position.y) + 2][(actual_position.x)] = '#';
+	table[(dimension.y - actual_position.y) ][(actual_position.x)-2] = '#';
+	table[(dimension.y - actual_position.y) ][(actual_position.x)+2] = '#';
+	table[(dimension.y - actual_position.y) - 1][(actual_position.x) - 1] = '#';
+	table[(dimension.y - actual_position.y) - 1][(actual_position.x) + 1] = '#';
+	table[(dimension.y - actual_position.y) + 1][(actual_position.x) + 1] = '#';
+	table[(dimension.y - actual_position.y) + 1][(actual_position.x) - 1] = '#';
 }
 
 void Frame::print_test_count()
@@ -165,7 +190,7 @@ void Frame::collision_bulle()//Impact entre la bulle et la flèche
 {
 	bool hitbox = false;
 
-	if ((player.Arrow.get_state()=='a') && (abs(player.Arrow.get_position().x - bulle.get_xy().x) <=5) && (abs(player.Arrow.get_position().y - bulle.get_xy().y) <=5))
+	if ((player.Arrow.get_state()=='a') && (abs(player.Arrow.get_position().x - bulle.get_xy().x) <=2) && (abs(player.Arrow.get_position().y - bulle.get_xy().y) <=2))
 	{
 		hitbox = true;
 	}
@@ -174,6 +199,7 @@ void Frame::collision_bulle()//Impact entre la bulle et la flèche
 	{
 		bulle.pop_layer();
 		player.Arrow.set_state('i');
+		score += 1000;
 		//cout << "Bulle touchee";
 	}
 }

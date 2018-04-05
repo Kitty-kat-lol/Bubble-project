@@ -64,18 +64,17 @@ int main()
 	//Choisi le mode à débogger: FPGA ou JEU
 	cout << "To test game, enter 1" << endl;
 	cout << "To test FPGA, enter 2" << endl;
-	int input;
-	cin >> input;
+	char input;
+	input = _getch();
 	switch (input){
-	case 1:
+	case '1':
 		play_game();
 		break;
-	case 2:
+	case '2':
 		debugFPGA();
 		break;
 	default:
 		cout << "Bad input, try again";
-		break;
 	};
 	
 	return 0;
@@ -84,35 +83,31 @@ int main()
 
 void debugFPGA()
 	{
-	while (1)//À mettre en commentaire pour jouer au jeu
+	bool boucle = true;
+	while (boucle)//À mettre en commentaire pour jouer au jeu
 	{
+		//Réponse analogique des quatres filtres de la TSA
 		int can0 = 0;
 		int can1 = 0;
 		int can2 = 0;
 		int can3 = 0;
 
+		//Lecture
 		carte.lireRegistre(registres.nreg_lect_can0, can0);
 		carte.lireRegistre(registres.nreg_lect_can1, can1);
 		carte.lireRegistre(registres.nreg_lect_can2, can2);
 		carte.lireRegistre(registres.nreg_lect_can3, can3);
 
-		cout << can0 << endl;
-		cout << can1 << endl;
-		cout << can2 << endl;
-		cout << can3 << endl;
+		cout << "Filtre 1: " << can0 << endl;
+		cout << "Filtre 2: " << can1 << endl;
+		cout << "Filtre 3: " << can2 << endl;
+		cout << "Filtre 4: " << can3 << endl << endl;
 
-		system("Pause");
-
-		cin >> clav;
+		clav = _getch();
 
 		if (clav == '#')
 		{
-			break;
-		}
-
-		else
-		{
-			clav = ' ';
+			boucle=false;
 		}
 	}
 }
@@ -130,17 +125,30 @@ void play_game()
 	int temps = 0;
 	int step = 1; // step en secondes
 
-				  //Nécessaire pour l'actualisation de la position de la bulle
+	//Nécessaire pour l'actualisation de la position de la bulle
 	Coordonnee position;
 	position = frame1.bulle.get_xy();
 	//Début du programme
 	while (1)		// quand la boule est detruite alors temps = -1
 	{
-		carte.lireRegistre(registres.nreg_lect_stat_btn, lecture_bouton);//Lit le registre des boutons
+		//Lit le registre des boutons
+		carte.lireRegistre(registres.nreg_lect_stat_btn, lecture_bouton);
+
+		//Réponse analogique des quatres filtres de la TSA
+		int can0 = 0;
+		int can1 = 0;
+		int can2 = 0;
+		int can3 = 0;
+
+		//Lecture
+		carte.lireRegistre(registres.nreg_lect_can0, can0);
+		carte.lireRegistre(registres.nreg_lect_can1, can1);
+		carte.lireRegistre(registres.nreg_lect_can2, can2);
+		carte.lireRegistre(registres.nreg_lect_can3, can3);
 
 		if (_kbhit())//Interompt la boule while si un touche au clavier est tapée
 		{
-			clav = _getch();
+			clav = _getch();//Équivalent d'un cin sans avoir à faire enter
 			if (clav == 'a')
 			{
 				clav = 'l';
@@ -173,6 +181,22 @@ void play_game()
 			}
 		}
 
+		if (can0 >= 0 || can1 >= 0 || can2 >= 0 || can3 >= 0)
+		{
+			if (can0 >= 175 || can0 >= can1 || can0 >= can2 || can0 >= can3)
+			{
+				frame1.player.move('l');
+			}
+			if (can1 >= 175 || can1 >= can0 || can1 >= can2 || can1 >= can3)
+			{
+				frame1.player.move('l');
+			}
+			if (can2 >= 175 || can2 >= can0 || can2 >= can1 || can2 >= can3)
+			{
+				frame1.player.shoot_arrow();
+			}
+		}
+
 		position = frame1.bulle.rebound(temps, step, position, pixel_x);//actualise la position de la flèche			
 
 		frame1.refresh();//Efface et affiche toute
@@ -189,7 +213,7 @@ void play_game()
 			frame1.set_win(true);
 			break;
 		}
-
+		
 		Sleep(60);//Augmente la performance du terminal, un peu
 				  //cout << temps;//Pour déboggage
 	}
@@ -198,10 +222,12 @@ void play_game()
 	if (!frame1.get_win())
 	{
 		cout << "YOU DIED" << endl;
+		cout << "Score: " << frame1.get_score() << endl;
 	}
 	else if (frame1.get_win())
 	{
 		cout << "THE BUBBLE HAS BEEN DESTROYED" << endl;
+		cout << "Score: " << frame1.get_score() << endl;
 	}
 
 	system("Pause");

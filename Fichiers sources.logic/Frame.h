@@ -43,9 +43,11 @@ public:
 	int get_x();
 	int get_y();
 	bool get_win();
+	int get_score();
 
 	//Change la valeur des attributs
 	void set_win(bool command);
+	void calculate_score();
 
 
 	Player player;
@@ -54,6 +56,7 @@ public:
 private:
 	char table[62][237];//à modifier selon l'ordi utilisé!
 	bool win;
+	int score;
 protected:
 	Coordonnee dimension;
 
