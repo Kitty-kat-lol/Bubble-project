@@ -19,26 +19,29 @@ Bubble_Trouble::Bubble_Trouble()
 	
 
 	
-	Plan.horizontal_min = -(1900+2*rayon_bulle) / 2;
-	Plan.horizontal_max = (1900 + 2 * rayon_bulle) / 2;
-	Plan.vertical_min = (1070+rayon_bulle) / 2;
-	Plan.vertical_max = -(1070 + rayon_bulle) / 2;
-	Bulle->setPos(Plan.horizontal_max, Plan.vertical_min);
+	Plan.horizontal_min = -((1900+2 * rayon_bulle) / 2.0);
+	Plan.horizontal_min *= 0.5;
+	Plan.horizontal_max = ((1900 + 2 * rayon_bulle) / 2.0);
+	Plan.horizontal_max *= 0.5;
+	Plan.vertical_min = ((1070+rayon_bulle) / 2);
+	Plan.vertical_max = -((1070 + rayon_bulle) / 2);
+
+	/*Note:
+	Le top est négatif et on a un plan cartésien centré dans la fenêtre pour les positions
+	*/
+
+	Bulle->setPos(-1940/2, -1090/2);
 	
 	
 	
-	/*Trajectoire_Bulle = new QGraphicsItemAnimation;	
-	temps = new QTimeLine(10000);
-	temps->setFrameRange(0, 4000);
-	Trajectoire_Bulle->setItem(Bulle);
-	Trajectoire_Bulle->setTimeLine(temps);*/
+	
 		
 	
 	setScene(Frame);
 	setRenderHints(QPainter::Antialiasing);
 
-	std::cout << "Max x: " << 0.5*sceneRect().width() << std::endl;
-	std::cout << "Max y: " << 0.5*sceneRect().height() << std::endl << std::endl;
+	std::cout << "Max x: " << Plan.horizontal_max << std::endl;
+	std::cout << "Max y: " << Plan.vertical_max  << std::endl << std::endl;
 
 	//Bulle->setPos()
 	std::cout << "Bulle x: " << Bulle->scenePos().x() << std::endl;
