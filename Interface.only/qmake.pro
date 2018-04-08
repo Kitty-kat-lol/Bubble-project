@@ -1,8 +1,11 @@
 TEMPLATE     = vcapp
 TARGET       = Final
 CONFIG      += warn_on qt debug_and_release windows console
-HEADERS     += Interface.h
-SOURCES     += Interface.cpp Final.cpp
+HEADERS     += Interface.h Jeu.h Options.h
+SOURCES     += Interface.cpp Final.cpp Jeu.cpp Options.cpp
 INCLUDEPATH += .
 LIBS	      += 
 QT += widgets
+QT += 3dquickscene2d
+Qt += testlib
+Qt += gui
