@@ -32,9 +32,9 @@ int main(int argc, char *argv[])
 	//tab des scores
 	QVBoxLayout *list = new QVBoxLayout;
 			QHBoxLayout *top = new QHBoxLayout;
-				QPushButton *bouton1 = new QPushButton("Le boutton test");
-				QPushButton *bouton2 = new QPushButton("Le bon boutton");
-				QPushButton *bouton3 = new QPushButton("Le bouton test");
+				QPushButton *bouton1 = new QPushButton("Reinitialiser les Scores");
+				QPushButton *bouton2 = new QPushButton("Sauvgarder les Scores");
+				QPushButton *bouton3 = new QPushButton("Actualiser les Scores");
 
 				top->addWidget(bouton1);
 				top->addWidget(bouton2);
