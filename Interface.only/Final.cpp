@@ -5,6 +5,7 @@
 #include <QLabel>
 #include <QLayout>
 #include <QTabWidget>
+#include <QMainWindow>
 
 
 int main(int argc, char *argv[])
@@ -12,20 +13,28 @@ int main(int argc, char *argv[])
 	
 	QApplication WIND(argc, argv);
 
-	QWidget fond;// = new QWidget;
+	//creation de la fenetre et des tabs
+	QMainWindow *fond = new QMainWindow;
+	QWidget *central = new QWidget(fond);
+	QVBoxLayout *tab_lay = new QVBoxLayout(central);
+	QTabWidget *tabs = new QTabWidget;
+	tab_lay->addWidget(tabs);
+	
+	tabs->addTab(new QWidget(), "Play");
+	tabs->addTab(new QWidget(), "Scores");
+	tabs->addTab(new QWidget(), "Options");
+	QWidget *play = tabs->widget(0);
+	QWidget *scores = tabs->widget(1);
+	QWidget *options = tabs->widget(2);
 
-	//QWidget *central = new QWidget(full);
-	//QTabWidget *tabs = new QTabWidget(central);
+	fond->setCentralWidget(central);
 	
-	//QWidget *fond = new QWidget;
-	//tabs->addTab(fond, "Play");
-	//tabs->addTab(new QWidget(), "Scores");
-	
-		QVBoxLayout *list = new QVBoxLayout;
+	//tab des scores
+	QVBoxLayout *list = new QVBoxLayout;
 			QHBoxLayout *top = new QHBoxLayout;
-				QPushButton *bouton1 = new QPushButton("Le boutton test", &fond);
-				QPushButton *bouton2 = new QPushButton("Le bon boutton", &fond);
-				QPushButton *bouton3 = new QPushButton("Le bouton test", &fond);
+				QPushButton *bouton1 = new QPushButton("Le boutton test");
+				QPushButton *bouton2 = new QPushButton("Le bon boutton");
+				QPushButton *bouton3 = new QPushButton("Le bouton test");
 
 				top->addWidget(bouton1);
 				top->addWidget(bouton2);
@@ -72,14 +81,15 @@ int main(int argc, char *argv[])
 				box->addWidget(fourth_s, 4, 3);
 				box->addWidget(fifth_s, 5, 3);
 
-
-
 			list->addLayout(top);
 			list->addLayout(box);
 
-			fond.setLayout(list);
+			scores->setLayout(list);
+
+	//autres tabs
 			
-	fond.show();
+			
+	fond->show();
 
 
 	return WIND.exec();
