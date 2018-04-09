@@ -1,37 +1,6 @@
-#include "interface.h"
-#include <QApplication>
-#include <QWidget>
-#include <QPushButton>
-#include <QLabel>
-#include <QLayout>
-#include <QTabWidget>
-#include <QMainWindow>
-#include "Options.h"
 
 
-int main(int argc, char *argv[])
-{
-	
-	QApplication WIND(argc, argv);
-
-	//creation de la fenetre et des tabs
-	QMainWindow *fond = new QMainWindow;
-	QWidget *central = new QWidget(fond);
-	QVBoxLayout *tab_lay = new QVBoxLayout(central);
-	QTabWidget *tabs = new QTabWidget;
-	tab_lay->addWidget(tabs);
-	
-	tabs->addTab(new QWidget(), "Play");
-	tabs->addTab(new QWidget(), "Scores");
-	tabs->addTab(new QWidget(), "Options");
-	QWidget *play = tabs->widget(0);
-	QWidget *scores = tabs->widget(1);
-	QWidget *options = tabs->widget(2);
-
-	fond->setCentralWidget(central);
-	
-	//tab des scores
-	QVBoxLayout *list = new QVBoxLayout;
+QVBoxLayout *list = new QVBoxLayout;
 			QHBoxLayout *top = new QHBoxLayout;
 				QPushButton *reinit = new QPushButton("Reinitialiser les Scores");
 				QPushButton *save = new QPushButton("Sauvgarder les Scores");
@@ -86,16 +55,3 @@ int main(int argc, char *argv[])
 			list->addLayout(box);
 
 			scores->setLayout(list);
-
-	//autres tabs
-			QVBoxLayout *option_layout = new QVBoxLayout;
-			Options *option_wid = new Options;
-			option_layout->addWidget(option_wid);
-
-			options->setLayout(option_layout);
-			
-	fond->show();
-
-
-	return WIND.exec();
-}
