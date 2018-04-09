@@ -6,6 +6,7 @@
 #include <QLayout>
 #include <QTabWidget>
 #include <QMainWindow>
+#include "Options.h"
 
 
 int main(int argc, char *argv[])
@@ -87,7 +88,11 @@ int main(int argc, char *argv[])
 			scores->setLayout(list);
 
 	//autres tabs
-			
+			QVBoxLayout *option_layout = new QVBoxLayout;
+			Options *option_wid = new Options;
+			option_layout->addWidget(option_wid);
+
+			options->setLayout(option_layout);
 			
 	fond->show();
 
