@@ -1,16 +1,19 @@
 #ifndef JEU_H
 #define JEU_H
+#include "Bulle_custom.h"
 
 #include <QMAINWINDOW>
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QGraphicsEllipseItem>
+#include <QGraphicsLineItem>
 #include <QPolygonF>
 #include <QPropertyAnimation>
 #include <QGraphicsItemAnimation>
 #include <QTimeLine>
 #include <iostream>
-//#include <QTest>
+#include <QTimer>
+#include <QPainter>
 
 struct Plan_Frame
 {
@@ -30,14 +33,26 @@ public:
 	void move_bubble();
 
 	QGraphicsScene* get_Frame();
-	QGraphicsEllipseItem* get_Bulle();
-	QTimeLine* get_temps();
+	Bulle_Custom* get_Bulle();
+	QTimer* get_temps();
 	QGraphicsItemAnimation* get_Trajectoire_Bulle();
-private:
+
+	void collision_bulle();
+//private:
+	QLineF Line_Top;
+	QLineF Line_Left;
+	QLineF Line_Right;
+	QLineF Line_Bottom;
+
+	QGraphicsLineItem *Line_Top_Item;
+	QGraphicsLineItem *Line_Left_Item;
+	QGraphicsLineItem *Line_Right_Item;
+	QGraphicsLineItem *Line_Bottom_Item;
+
 
 	QGraphicsScene *Frame;
-	QGraphicsEllipseItem *Bulle;
-	QTimeLine *temps;
+	Bulle_Custom *Bulle;
+	QTimer *temps;
 	QGraphicsItemAnimation *Trajectoire_Bulle;
 	Plan_Frame Plan;
 
