@@ -1,4 +1,4 @@
-#include "Options.h"
+//#include "Options.h"
 #include "Jeu.h"
 
 #include <QApplication>
@@ -7,7 +7,7 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QLayout>
-#include <conio.h>
+
 #include <iostream>
 
 
@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 	
 	//Menu d'options
 	QMainWindow App;
-	Options *menu_option = new Options;
+	//Options *menu_option = new Options;
 	
 	//App.setCentralWidget(menu_option);
 	

@@ -1,8 +1,8 @@
 TEMPLATE     = vcapp
-TARGET       = Interface
+TARGET       = Game
 CONFIG      += warn_on qt debug_and_release windows console
-HEADERS     += Acceuil.h Jeu.h Options.h Bulle_Custom.h Player_custom.h
-SOURCES     += Acceuil.cpp Main.cpp Jeu.cpp Options.cpp Bulle_Custom.cpp Player_custom.cpp
+HEADERS     += Bulle_Custom.h Player_custom.h
+SOURCES     += Main.cpp Jeu.cpp Bulle_Custom.cpp Player_custom.cpp
 INCLUDEPATH += .
 LIBS	      += 
 QT += widgets
