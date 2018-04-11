@@ -16,6 +16,7 @@ struct Phoneme
 	int filtre_2;
 	int filtre_3;
 	int tolerance;
+	int count_detected;
 };
 
 
@@ -26,7 +27,7 @@ public:
 	~Input_FPGA();
 	void read();
 	void print_CMD();
-	bool get_value(int index);
+	int get_value(Phoneme son);
 	bool has_items();
 	bool A_detected();
 	bool U_detected();
@@ -34,7 +35,7 @@ public:
 	bool O_detected();
 
 private:
-	bool etat_phonemes[15][4];
+	
 	int filtre_0;
 	int filtre_1;
 	int filtre_2;
@@ -43,7 +44,7 @@ private:
 	bool debug;
 	int min_detect;
 protected:
-	int appending_index;
+	
 	Phoneme U;
 	Phoneme A;
 	Phoneme I;

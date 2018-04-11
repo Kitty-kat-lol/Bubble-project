@@ -4,14 +4,7 @@
 
 Input_FPGA::Input_FPGA()
 {
-	//Initialise les valeurs à 0
-	for (int i = 0; i <= 14; i++)
-	{
-		for (int j = 0; j <= 3; j++)
-		{
-			etat_phonemes[i][j] = false;
-		}		
-	}
+	
 
 	debug = false;
 
@@ -34,21 +27,29 @@ Input_FPGA::Input_FPGA()
 	U.filtre_1 = 0;
 	U.filtre_2 = 0;
 	U.filtre_3 = 0;
+	U.count_detected = 0;
+	U.tolerance = 0;
 
 	A.filtre_0 = 0;
 	A.filtre_1 = 0;
 	A.filtre_2 = 0;
 	A.filtre_3 = 0;
+	A.count_detected = 0;
+	A.tolerance = 0;
 
 	I.filtre_0 = 0;
 	I.filtre_1 = 0;
 	I.filtre_2 = 0;
 	I.filtre_3 = 0;
+	I.count_detected = 0;
+	I.tolerance = 0;
 
 	O.filtre_0 = 0;
 	O.filtre_1 = 0;
 	O.filtre_2 = 0;
 	O.filtre_3 = 0;
+	O.count_detected = 0;
+	O.tolerance = 0;
 }
 
 
@@ -64,10 +65,7 @@ void Input_FPGA::read()
 	Carte.lireRegistre(Registres.nreg_lect_can2, filtre_2);
 	Carte.lireRegistre(Registres.nreg_lect_can3, filtre_3);
 
-	if (appending_index == 15)
-	{
-		appending_index = 0;
-	}
+	
 
 	//Phoneme: U
 	if ((filtre_0 - U.tolerance >= filtre_0 && filtre_0 + U.tolerance <= filtre_0) &&
@@ -75,14 +73,16 @@ void Input_FPGA::read()
 		(filtre_2 - U.tolerance >= filtre_2 && filtre_2 + U.tolerance <= filtre_2) &&
 		(filtre_3 - U.tolerance >= filtre_3 && filtre_3 + U.tolerance <= filtre_3))
 	{
-		etat_phonemes[appending_index][0] = true;
+		U.count_detected++;
+		cout << "U detected!" << endl;
 	}
 	if (!(filtre_0 - U.tolerance >= filtre_0 && filtre_0 + U.tolerance <= filtre_0) &&
 		(filtre_1 - U.tolerance >= filtre_1 && filtre_1 + U.tolerance <= filtre_1) &&
 		(filtre_2 - U.tolerance >= filtre_2 && filtre_2 + U.tolerance <= filtre_2) &&
 		(filtre_3 - U.tolerance >= filtre_3 && filtre_3 + U.tolerance <= filtre_3))
 	{
-		etat_phonemes[appending_index][0] = false;
+		U.count_detected--;
+		cout << "U lost..." << endl;
 	}
 
 	//Phoneme: A
@@ -91,14 +91,16 @@ void Input_FPGA::read()
 		(filtre_2 - A.tolerance >= filtre_2 && filtre_2 + A.tolerance <= filtre_2) &&
 		(filtre_3 - A.tolerance >= filtre_3 && filtre_3 + A.tolerance <= filtre_3))
 	{
-		etat_phonemes[appending_index][1] = true;
+		A.count_detected++;
+		cout << "A detected!" << endl;
 	}
 	if (!(filtre_0 - A.tolerance >= filtre_0 && filtre_0 + A.tolerance <= filtre_0) &&
 		(filtre_1 - A.tolerance >= filtre_1 && filtre_1 + A.tolerance <= filtre_1) &&
 		(filtre_2 - A.tolerance >= filtre_2 && filtre_2 + A.tolerance <= filtre_2) &&
 		(filtre_3 - A.tolerance >= filtre_3 && filtre_3 + A.tolerance <= filtre_3))
 	{
-		etat_phonemes[appending_index][1] = false;
+		A.count_detected--;
+		cout << "A lost..." << endl;
 	}
 
 	//Phoneme: I
@@ -107,14 +109,16 @@ void Input_FPGA::read()
 		(filtre_2 - I.tolerance >= filtre_2 && filtre_2 + I.tolerance <= filtre_2) &&
 		(filtre_3 - I.tolerance >= filtre_3 && filtre_3 + I.tolerance <= filtre_3))
 	{
-		etat_phonemes[appending_index][2] = true;
+		I.count_detected++;
+		cout << "I detected!" << endl;
 	}
 	if (!(filtre_0 - I.tolerance >= filtre_0 && filtre_0 + I.tolerance <= filtre_0) &&
 		(filtre_1 - I.tolerance >= filtre_1 && filtre_1 + I.tolerance <= filtre_1) &&
 		(filtre_2 - I.tolerance >= filtre_2 && filtre_2 + I.tolerance <= filtre_2) &&
 		(filtre_3 - I.tolerance >= filtre_3 && filtre_3 + I.tolerance <= filtre_3))
 	{
-		etat_phonemes[appending_index][2] = false;
+		I.count_detected--;
+		cout << "I lost..." << endl;
 	}
 
 	//Phoneme: O
@@ -123,19 +127,22 @@ void Input_FPGA::read()
 		(filtre_2 - O.tolerance >= filtre_2 && filtre_2 + O.tolerance <= filtre_2) &&
 		(filtre_3 - O.tolerance >= filtre_3 && filtre_3 + O.tolerance <= filtre_3))
 	{
-		etat_phonemes[appending_index][3] = true;
+		O.count_detected++;
+		cout << "O detected!" << endl;
 	}
 	if (!(filtre_0 - O.tolerance >= filtre_0 && filtre_0 + O.tolerance <= filtre_0) &&
 		(filtre_1 - O.tolerance >= filtre_1 && filtre_1 + O.tolerance <= filtre_1) &&
 		(filtre_2 - O.tolerance >= filtre_2 && filtre_2 + O.tolerance <= filtre_2) &&
 		(filtre_3 - O.tolerance >= filtre_3 && filtre_3 + O.tolerance <= filtre_3))
 	{
-		etat_phonemes[appending_index][3] = false;
+		O.count_detected--;
+		cout << "O lost..." << endl;
 	}
 
 	
 	
-	appending_index++;
+	
+	
 	Sleep(66);
 	//read();
 	
@@ -182,37 +189,24 @@ void Input_FPGA::print_CMD()
 	}
 }
 
-bool Input_FPGA::get_value(int index)
+int Input_FPGA::get_value(Phoneme son)
 {
-	return etat_phonemes[appending_index][index];
+	return son.count_detected;
 }
 
 bool Input_FPGA::has_items()
 {
-	for (int i = 0; i <= 14; i++)
+	if (A.count_detected || U.count_detected || I.count_detected || O.count_detected)
 	{
-		for (int j = 0; j <= 3; j++)
-		{
-			if (etat_phonemes[i][j])
-			{
-				return true;
-			}
-		}
+		return true;
 	}
 	return false;
 }
 
 bool Input_FPGA::A_detected()
 {
-	int detection_counter = 0;
-	for (int i = 0; i <= 14; i++)
-	{
-		if (etat_phonemes[i][1])
-		{
-			detection_counter++;
-		}
-	}
-	if (detection_counter >= min_detect)
+	
+	if (A.count_detected >= min_detect)
 	{
 		return true;
 	}
@@ -224,15 +218,8 @@ bool Input_FPGA::A_detected()
 
 bool Input_FPGA::U_detected()
 {
-	int detection_counter = 0;
-	for (int i = 0; i <= 14; i++)
-	{
-		if (etat_phonemes[i][0])
-		{
-			detection_counter++;
-		}
-	}
-	if (detection_counter >= min_detect)
+	
+	if (U.count_detected >= min_detect)
 	{
 		return true;
 	}
@@ -244,15 +231,8 @@ bool Input_FPGA::U_detected()
 
 bool Input_FPGA::I_detected()
 {
-	int detection_counter = 0;
-	for (int i = 0; i <= 14; i++)
-	{
-		if (etat_phonemes[i][2])
-		{
-			detection_counter++;
-		}
-	}
-	if (detection_counter >= min_detect)
+	
+	if (I.count_detected >= min_detect)
 	{
 		return true;
 	}
@@ -264,15 +244,8 @@ bool Input_FPGA::I_detected()
 
 bool Input_FPGA::O_detected()
 {
-	int detection_counter = 0;
-	for (int i = 0; i <= 14; i++)
-	{
-		if (etat_phonemes[i][3])
-		{
-			detection_counter++;
-		}
-	}
-	if (detection_counter >= min_detect)
+	
+	if (O.count_detected >= min_detect)
 	{
 		return true;
 	}
