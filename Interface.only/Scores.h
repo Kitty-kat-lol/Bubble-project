@@ -1,12 +1,22 @@
 #ifndef SCORES_H
 #define SCORES_H
 
+#include <QWidget>
+#include <QGridLayout>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QPushButton>
+#include <QApplication>
+#include <QLabel>
+
+#include <QFile>
+#include <QTextStream>
+
 struct stru_scores
 {
 	QString name;
-	int score;
+	QString score;
 };
-
 
 class Scores :public QWidget
 {
@@ -14,15 +24,19 @@ class Scores :public QWidget
 public:
 	Scores();
 	~Scores();
+
+	stru_scores *the_scores;
 	
 	QPushButton *reinit;
 	QPushButton *save;
 	QPushButton *act;
 	
-	stru_scores the_scores[100];
-
-
-//public slots:
+	public slots:
+	
+	void add_scores(stru_scores act);
+	void gets_scores();
+	void w_scores();
+	void reinit_scores();
 
 };
 
