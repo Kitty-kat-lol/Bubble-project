@@ -8,6 +8,7 @@
 #include <QMainWindow>
 #include "Options.h"
 #include "Scores.h"
+#include "Play.h"
 
 
 int main(int argc, char *argv[])
@@ -30,7 +31,12 @@ int main(int argc, char *argv[])
 	QWidget *options = tabs->widget(2);
 
 	fond->setCentralWidget(central);
-	
+	//tab de jeu
+			QVBoxLayout *play_layout = new QVBoxLayout;
+			Play *play_wid = new Play;
+			play_layout->addWidget(play_wid);
+
+			play->setLayout(play_layout);
 	//tab des scores
 			QVBoxLayout *scores_layout = new QVBoxLayout;
 			Scores *scores_wid = new Scores;
