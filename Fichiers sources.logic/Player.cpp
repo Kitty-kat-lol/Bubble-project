@@ -2,7 +2,7 @@
 
 Player::Player()
 {
-	position.x = 113;//Initialise sa position au centre du terminal
+	position.x = 83;//Initialise sa position au centre du terminal
 	position.y = 0;
 	state = 'a';
 	life = 3;

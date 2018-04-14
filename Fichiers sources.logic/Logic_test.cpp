@@ -62,17 +62,28 @@ int main()
 
 
 	//Choisi le mode à débogger: FPGA ou JEU
+	Frame * test = new Frame();
 	cout << "To test game, enter 1" << endl;
 	cout << "To test FPGA, enter 2" << endl;
+	cout << "To calibrate screen, enter 3" << endl;
 	char input;
 	input = _getch();
 	switch (input){
 	case '1':
+		delete test;
 		play_game();
 		break;
 	case '2':
+		delete test;
 		debugFPGA();
 		break;
+	case '3':
+		system("CLS");
+		test->print_test_count();
+		system("Pause");
+		system("CLS");
+		test->print_test_dot();
+		system("Pause");
 	default:
 		cout << "Bad input, try again";
 	};
@@ -97,11 +108,13 @@ void debugFPGA()
 		carte.lireRegistre(registres.nreg_lect_can1, can1);
 		carte.lireRegistre(registres.nreg_lect_can2, can2);
 		carte.lireRegistre(registres.nreg_lect_can3, can3);
-
-		cout << "Filtre 1: " << can0 << endl;
-		cout << "Filtre 2: " << can1 << endl;
-		cout << "Filtre 3: " << can2 << endl;
-		cout << "Filtre 4: " << can3 << endl << endl;
+		
+			cout << "Filtre 1: " << can0 << endl;
+			cout << "Filtre 2: " << can1 << endl;
+			cout << "Filtre 3: " << can2 << endl;
+			cout << "Filtre 4: " << can3 << endl << endl;
+		
+		
 
 		clav = _getch();
 
@@ -109,6 +122,7 @@ void debugFPGA()
 		{
 			boucle=false;
 		}
+		Sleep(200);
 	}
 }
 
@@ -133,6 +147,7 @@ void play_game()
 	{
 		//Lit le registre des boutons
 		carte.lireRegistre(registres.nreg_lect_stat_btn, lecture_bouton);
+		//cout << lecture_bouton;
 
 		//Réponse analogique des quatres filtres de la TSA
 		int can0 = 0;
@@ -163,19 +178,24 @@ void play_game()
 			{
 				frame1.player.shoot_arrow();//tire une flèche
 			}
+			else if (clav == '#')
+			{
+				frame1.set_win(false);
+				break;
+			}
 		}
-
-		if (lecture_bouton > 0)//Interompt la boule while si  un bouton est appuyer sur la FPGA
+		//lecture_bouton = 1;
+		if (lecture_bouton > 16)//Interompt la boule while si  un bouton est appuyer sur la FPGA
 		{
-			if (lecture_bouton == 1)
+			if (lecture_bouton == 17)
 			{
 				frame1.player.move('r');
 			}
-			else if (lecture_bouton == 8)
+			else if (lecture_bouton == 24)
 			{
 				frame1.player.move('l');
 			}
-			else if (lecture_bouton == 2 || lecture_bouton == 4)
+			else if (lecture_bouton == 18 || lecture_bouton == 20)
 			{
 				frame1.player.shoot_arrow();
 			}
@@ -183,15 +203,15 @@ void play_game()
 
 		if (can0 >= 0 || can1 >= 0 || can2 >= 0 || can3 >= 0)
 		{
-			if (can0 >= 175 || can0 >= can1 || can0 >= can2 || can0 >= can3)
+			if (can0 >= 175 && can0 >= can1 && can0 >= can2 && can0 >= can3)
 			{
 				frame1.player.move('l');
 			}
-			if (can1 >= 175 || can1 >= can0 || can1 >= can2 || can1 >= can3)
+			if (can1 >= 175 && can1 >= can0 && can1 >= can2 && can1 >= can3)
 			{
-				frame1.player.move('l');
+				frame1.player.move('r');
 			}
-			if (can2 >= 175 || can2 >= can0 || can2 >= can1 || can2 >= can3)
+			if (can2 >= 175 && can2 >= can0 && can2 >= can1 && can2 >= can3)
 			{
 				frame1.player.shoot_arrow();
 			}
@@ -229,6 +249,22 @@ void play_game()
 		cout << "THE BUBBLE HAS BEEN DESTROYED" << endl;
 		cout << "Score: " << frame1.get_score() << endl;
 	}
+	char action;
+	cout << "To play again, press 1"<< endl;
+	action = _getch();
 
-	system("Pause");
+	switch (action)
+	{
+	case '1':
+	{
+		system("cls");
+		play_game();
+	}
+	case '2':
+	{
+		break;
+	}
+	default:
+		break;
+	}
 }

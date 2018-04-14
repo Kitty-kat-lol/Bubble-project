@@ -54,7 +54,7 @@ public:
 	Bulle bulle;
 	string print;
 private:
-	char table[62][237];//à modifier selon l'ordi utilisé!
+	char table[40][168];//à modifier selon l'ordi utilisé!
 	bool win;
 	int score;
 protected:

@@ -10,8 +10,8 @@ Frame::Frame()
 	//Kate:			x et y
 	//P-A:			x et y
 
-	dimension.x = 237;//Max width
-	dimension.y = 62;//Max height
+	dimension.x = 168;//Max width
+	dimension.y = 40;//Max height
 	for (int i = 0; i < dimension.y;i++)
 	{
 		for (int j = 0; j < dimension.x; j++)

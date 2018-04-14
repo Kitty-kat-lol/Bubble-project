@@ -19,7 +19,7 @@ struct Phoneme
 	int filtre_2;
 	int filtre_3;
 	int tolerance;
-	unsigned int count_detected;
+	int count_detected;
 };
 
 

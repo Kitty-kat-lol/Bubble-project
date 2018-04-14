@@ -16,6 +16,7 @@ Input_FPGA::Input_FPGA()
 	{
 		cout << "Probleme de connection avec la carte" << endl;
 	}
+
 	//État des filtres
 	filtre_0 = 0;
 	filtre_1 = 0;
@@ -23,7 +24,7 @@ Input_FPGA::Input_FPGA()
 	filtre_3 = 0;
 
 	//Nombre minimum de détection pour qu'un phonemes soit renvoyé comme vrai
-	min_detect = 10;
+	min_detect = 5;
 
 	//Filtres du phonemes U
 	U.filtre_0 = 25;
@@ -58,7 +59,7 @@ Input_FPGA::Input_FPGA()
 	O.filtre_2 = 50;
 	O.filtre_3 = 130;
 	O.count_detected = 0;
-	O.tolerance = 0;
+	O.tolerance = 35;
 	
 
 }
@@ -87,31 +88,29 @@ void Input_FPGA::read()
 		U.count_detected++;
 		cout << "U detected!" << endl;
 	}
-	if (!(filtre_0 - U.tolerance >= U.filtre_0 && filtre_0 + U.tolerance <= U.filtre_0) &&
-		(filtre_1 - U.tolerance >= filtre_1 && filtre_1 + U.tolerance <= filtre_1) &&
-		(filtre_2 - U.tolerance >= filtre_2 && filtre_2 + U.tolerance <= filtre_2) &&
-		(filtre_3 - U.tolerance >= filtre_3 && filtre_3 + U.tolerance <= filtre_3))
+	else
 	{
-		U.count_detected--;
-		cout << "U lost..." << endl;
+		if (U.count_detected != 0)
+		{
+			U.count_detected--;
+			cout << "U lost..." << endl;
+		}
 	}
 
 	//Phoneme: A
-	if ((filtre_0 - A.tolerance >= A.filtre_0 && filtre_0 + A.tolerance <= A.filtre_0) &&
-		(filtre_1 - A.tolerance >= A.filtre_1 && filtre_1 + A.tolerance <= A.filtre_1) &&
-		(filtre_2 - A.tolerance >= A.filtre_2 && filtre_2 + A.tolerance <= A.filtre_2) &&
-		(filtre_3 - A.tolerance >= A.filtre_3 && filtre_3 + A.tolerance <= A.filtre_3))
+	if (filtre_3 - A.tolerance >= A.filtre_3 && filtre_3 + A.tolerance <= A.filtre_3 &&
+		filtre_2 - A.tolerance >= A.filtre_2 && filtre_2 + A.tolerance <= A.filtre_2 )
 	{
 		A.count_detected++;
 		cout << "A detected!" << endl;
 	}
-	if (!(filtre_0 - A.tolerance >= A.filtre_0 && filtre_0 + A.tolerance <= A.filtre_0) &&
-		(filtre_1 - A.tolerance >= A.filtre_1 && filtre_1 + A.tolerance <= A.filtre_1) &&
-		(filtre_2 - A.tolerance >= A.filtre_2 && filtre_2 + A.tolerance <= A.filtre_2) &&
-		(filtre_3 - A.tolerance >= A.filtre_3 && filtre_3 + A.tolerance <= A.filtre_3))
+	else
 	{
-		A.count_detected--;
-		cout << "A lost..." << endl;
+		if (A.count_detected != 0)
+		{
+			A.count_detected--;
+			cout << "A lost..." << endl;
+		}		
 	}
 
 	//Phoneme: I
@@ -123,31 +122,28 @@ void Input_FPGA::read()
 		I.count_detected++;
 		cout << "I detected!" << endl;
 	}
-	if (!(filtre_0 - I.tolerance >= I.filtre_0 && filtre_0 + I.tolerance <= I.filtre_0) &&
-		(filtre_1 - I.tolerance >= I.filtre_1 && filtre_1 + I.tolerance <= I.filtre_1) &&
-		(filtre_2 - I.tolerance >= I.filtre_2 && filtre_2 + I.tolerance <= I.filtre_2) &&
-		(filtre_3 - I.tolerance >= I.filtre_3 && filtre_3 + I.tolerance <= I.filtre_3))
+	else 
 	{
-		I.count_detected--;
-		cout << "I lost..." << endl;
+		if (I.count_detected != 0)
+		{
+			I.count_detected--;
+			cout << "I lost..." << endl;
+		}		
 	}
 
 	//Phoneme: O
-	if ((filtre_0 - O.tolerance >= O.filtre_0 && filtre_0 + O.tolerance <= O.filtre_0) &&
-		(filtre_1 - O.tolerance >= O.filtre_1 && filtre_1 + O.tolerance <= O.filtre_1) &&
-		(filtre_2 - O.tolerance >= O.filtre_2 && filtre_2 + O.tolerance <= O.filtre_2) &&
-		(filtre_3 - O.tolerance >= O.filtre_3 && filtre_3 + O.tolerance <= O.filtre_3))
+	if (filtre_3>=100)
 	{
 		O.count_detected++;
 		cout << "O detected!" << endl;
 	}
-	if (!(filtre_0 - O.tolerance >= O.filtre_0 && filtre_0 + O.tolerance <= O.filtre_0) &&
-		(filtre_1 - O.tolerance >= O.filtre_1 && filtre_1 + O.tolerance <= O.filtre_1) &&
-		(filtre_2 - O.tolerance >= O.filtre_2 && filtre_2 + O.tolerance <= O.filtre_2) &&
-		(filtre_3 - O.tolerance >= O.filtre_3 && filtre_3 + O.tolerance <= O.filtre_3))
+	else 
 	{
-		O.count_detected--;
-		cout << "O lost..." << endl;
+		if (O.count_detected != 0)
+		{
+			O.count_detected--;
+			cout << "O lost..." << endl;
+		}		
 	}
 
 	

@@ -13,7 +13,7 @@ int main(void)
 	test.set_debug(true);
 	while (true)
 	{
-		
+		test.read();
 		test.print_CMD();
 		
 

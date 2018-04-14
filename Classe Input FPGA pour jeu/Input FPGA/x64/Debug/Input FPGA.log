@@ -1,8 +1,4 @@
-﻿  Input_FPGA.cpp
-g:\gabriel\sherbrooke\s2\projet\input fpga\input fpga\input_fpga.cpp(229): warning C4018: '>=': signed/unsigned mismatch
-g:\gabriel\sherbrooke\s2\projet\input fpga\input fpga\input_fpga.cpp(242): warning C4018: '>=': signed/unsigned mismatch
-g:\gabriel\sherbrooke\s2\projet\input fpga\input fpga\input_fpga.cpp(255): warning C4018: '>=': signed/unsigned mismatch
-g:\gabriel\sherbrooke\s2\projet\input fpga\input fpga\input_fpga.cpp(268): warning C4018: '>=': signed/unsigned mismatch
+﻿  Skipping... (no relevant changes detected)
   Main.cpp
-  Generating Code...
-  Input FPGA.vcxproj -> G:\Gabriel\Sherbrooke\S2\Projet\Input FPGA\x64\Debug\Input FPGA.exe
+  Input_FPGA.cpp
+  Input FPGA.vcxproj -> D:\Sherbrooke\S2\Bubble trouble\Bubble-project\Classe Input FPGA pour jeu\x64\Debug\Input FPGA.exe
