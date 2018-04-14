@@ -6,6 +6,7 @@
 #include <QLayout>
 #include <QTabWidget>
 #include <QMainWindow>
+#include <Qmovie>
 #include "Options.h"
 #include "Scores.h"
 #include "Play.h"
@@ -35,7 +36,15 @@ int main(int argc, char *argv[])
 			QVBoxLayout *play_layout = new QVBoxLayout;
 			Play *play_wid = new Play;
 			play_layout->addWidget(play_wid);
-
+			QMovie *movie = new QMovie();
+			movie->setFileName("giphy.gif");
+				movie->start();
+				QLabel *label = new QLabel();
+				
+				label->setMovie(movie);
+				play_layout->addWidget(label);
+			play->setStyleSheet("background-image:url(plain.png);font: bold; color: blue;font-size: 36px;height: 48px;width: 120px;");
+			
 			play->setLayout(play_layout);
 	//tab des scores
 			QVBoxLayout *scores_layout = new QVBoxLayout;
