@@ -4,6 +4,9 @@
 #include "CommunicationFPGA.h"
 #include "Registres.h"
 #include <conio.h>
+#include <stdlib.h>
+
+#include <Windows.h>
 
 #include <iostream>
 
@@ -16,7 +19,7 @@ struct Phoneme
 	int filtre_2;
 	int filtre_3;
 	int tolerance;
-	int count_detected;
+	unsigned int count_detected;
 };
 
 
@@ -33,6 +36,7 @@ public:
 	bool U_detected();
 	bool I_detected();
 	bool O_detected();
+	void set_debug(bool activation);
 
 private:
 	
