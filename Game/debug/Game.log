@@ -1,0 +1,4 @@
+﻿  Bulle_Custom.cpp
+c:\users\pierre-alexandre\documents\github\bubble-project\game\bulle_custom.cpp(35): warning C4100: 'widget' : paramètre formel non référencé
+c:\users\pierre-alexandre\documents\github\bubble-project\game\bulle_custom.cpp(35): warning C4100: 'option' : paramètre formel non référencé
+  Game.vcxproj -> C:\Users\Pierre-Alexandre\Documents\GitHub\Bubble-project\Game\debug\Game.exe
