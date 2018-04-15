@@ -8,6 +8,8 @@
 #include <QGraphicsScene>
 #include <QThread>
 #include <iostream>
+#include <Qmessagebox>
+
 
 class Bulle_Custom : public QGraphicsItem
 {

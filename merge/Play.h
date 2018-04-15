@@ -37,42 +37,6 @@
 #include <QGraphicsPixmapItem>
 #include <QGamepad>
 
-
-struct stru_play
-{
-	QString name;
-	QString score;
-};
-
-class Play :public QWidget
-{
-	Q_OBJECT
-public:
-	Play();
-	~Play();
-
-	QPushButton *Start;
-	QPushButton *Quit;
-
-	public slots:
-
-	void Quit_play();
-	void Start_play();
-private:
-	QMainWindow App;
-
-};
-
-
-
-struct Plan_Frame
-{
-	int horizontal_min;
-	int horizontal_max;
-	int vertical_min;
-	int vertical_max;
-};
-
 class Bubble_Trouble : public QGraphicsView
 {
 
@@ -85,7 +49,7 @@ public:
 	void keyPressEvent(QKeyEvent *event);
 	void customEvent(QEvent *input);
 	void gamepad_control();
-	void death();
+	void Death();
 
 	QGraphicsScene* get_Frame();
 	Bulle_Custom* get_Bulle();
@@ -111,11 +75,50 @@ public:
 	Player_custom *Player;
 	QTimer *temps;
 	Arrow_Custom *Arrow;
-	Plan_Frame Plan;
+	//Plan_Frame Plan;
 
 	QGamepad *Xbox;
 
 };
+
+
+struct stru_play
+{
+	QString name;
+	QString score;
+};
+
+class Play :public QWidget
+{
+	Q_OBJECT
+public:
+	Play();
+	~Play();
+
+	QPushButton *Start;
+	QPushButton *Quit;
+	Bubble_Trouble *test;
+
+	public slots:
+
+	void Quit_play();
+	void Start_play();
+private:
+	QMainWindow App;
+
+};
+
+
+
+struct Plan_Frame
+{
+	int horizontal_min;
+	int horizontal_max;
+	int vertical_min;
+	int vertical_max;
+};
+
+
  // test afficher vies et autres infos
 class Out_text : public QTextEdit
 {

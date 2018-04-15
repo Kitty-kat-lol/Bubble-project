@@ -12,10 +12,10 @@ Player_custom::Player_custom()
 	setPos(mapToParent(Coordonnee_Player));
 
 	debug_position_player();
-
 	vies = 1;
+	//vies = this->parentWidget->option_wid->vies_initiales;
 	score = 0;
-	
+
 }
 
 
@@ -58,6 +58,22 @@ void Player_custom::paint(QPainter * painter, const QStyleOptionGraphicsItem * o
 int Player_custom::get_vies()
 {
 	return vies;
+}
+
+void Player_custom::init_vie(Options * opt)
+{
+	if (opt->une_vie->isChecked())
+	{
+		vies = 1;
+	}
+	if (opt->deux_vies->isChecked())
+	{
+		vies = 2;
+	}
+	if (opt->trois_vies->isChecked())
+	{
+		vies = 3;
+	}
 }
 
 bool Player_custom::check_borders(QString side)
@@ -131,7 +147,10 @@ void Player_custom::advance(int phase)
 	QThread::msleep(200);*/
 	//move("right");
 	
-
+	if (vies == 0)
+	{
+		//delete this; crie in pain 
+	}
 	
 	
 	return;
@@ -142,6 +161,14 @@ void Player_custom::debug_position_player()
 	std::cout << "Position player x: " << Coordonnee_Player.rx() << std::endl;
 	std::cout << "Position player y: " << Coordonnee_Player.ry() << std::endl << std::endl;
 }
+
+/*void Player_custom::check_death()
+{
+	if (vies == 0)
+	{
+		emmit send_death();
+	}
+}*/
 
 void Player_custom::move_left()
 {
@@ -156,6 +183,14 @@ void Player_custom::set_lives(int nb_vies)
 void Player_custom::add_score(int point)
 {
 	score = score + point;
+}
+
+void Player_custom::set_1vie(bool etat)
+{
+	if (etat == true)
+	{
+		vies = 1;
+	}
 }
 
 

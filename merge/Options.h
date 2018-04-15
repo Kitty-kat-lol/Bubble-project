@@ -54,8 +54,6 @@ public:
 	QPushButton *retour;
 	LogOut *events;
 
-//public slots:
-
 };
 
 

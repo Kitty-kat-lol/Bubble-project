@@ -60,7 +60,7 @@ void Play::Start_play()
 	reply = QMessageBox::question(this, "Start", "Prêt ?", QMessageBox::Yes | QMessageBox::No);
 	if(reply == QMessageBox::Yes) {
 
-		Bubble_Trouble *test = new Bubble_Trouble;
+		test = new Bubble_Trouble;
 		/*// Test ajout de boite de texte pour voir les trucs
 		QWidget *contain = new QWidget;
 		QVBoxLayout *vert = new QVBoxLayout;
@@ -173,7 +173,7 @@ Bubble_Trouble::Bubble_Trouble()
 
 
 	//Set up du plan,
-	Plan.horizontal_min = -1940;
+	/*Plan.horizontal_min = -1940;
 	Plan.horizontal_min *= 0.5;
 	Plan.horizontal_max = 1940;
 	Plan.horizontal_max *= 0.5;
@@ -201,8 +201,8 @@ Bubble_Trouble::Bubble_Trouble()
 	Xbox = new QGamepad;
 
 
-	std::cout << "Max x: " << Plan.horizontal_max << std::endl;
-	std::cout << "Max y: " << Plan.vertical_max << std::endl << std::endl;
+	//std::cout << "Max x: " << Plan.horizontal_max << std::endl;
+	//std::cout << "Max y: " << Plan.vertical_max << std::endl << std::endl;
 
 	//Bulle->setPos()
 	std::cout << "Bulle x: " << Bulle->scenePos().x() << std::endl;
@@ -273,6 +273,7 @@ void Bubble_Trouble::keyPressEvent(QKeyEvent *event)
 {
 	int count_escape = 0;
 	int test = (qrand() % 360);
+	Death();
 	if (event->key() == Qt::Key_A || Xbox->buttonLeft())
 	{
 		Player->move("left");
@@ -306,9 +307,7 @@ void Bubble_Trouble::keyPressEvent(QKeyEvent *event)
 				window()->close();
 			}
 		}
-		
 	}
-
 	gamepad_control();
 }
 
@@ -336,11 +335,26 @@ void Bubble_Trouble::gamepad_control()
 
 }
 
-void Bubble_Trouble::death()
+void Bubble_Trouble::Death()
 {
 	if (Player->vies == 0)
 	{
-		//Gérer la fin du jeu
+		temps->stop();
+		QMessageBox::StandardButton pause;
+		QString bob = "Do you want to save your score?";
+		bob += "Vies : ";
+		bob += QString::number(Player->get_vies());
+		bob += " \nScore : ";
+		bob += QString::number(Player->score);
+		pause = QMessageBox::question(this, "DEATH", bob, QMessageBox::Yes | QMessageBox::No);
+		if (pause == QMessageBox::No) {
+			window()->close();
+		}
+		else if (pause == QMessageBox::Yes)
+		{
+
+			window()->close();
+		}
 	}
 }
 

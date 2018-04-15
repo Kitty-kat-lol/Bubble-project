@@ -151,16 +151,19 @@ void LogOut::Print_Debug_Fille(int state)
 void LogOut::Print_une_vie()
 {
 	setPlainText("Le joueur a 1 vie et un mulitplicateur de score de 3");
+	//this->parentWidget->vies_initiales = 1;
 }
 
 void LogOut::Print_deux_vies()
 {
 	setPlainText("Le joueur a 2 vie et un mulitplicateur de score de 2");
+	//this->parentWidget->vies_initiales = 2;
 }
 
 void LogOut::Print_trois_vies()
 {
 	setPlainText("Le joueur a 3 vie et un mulitplicateur de score de 1");
+	//this->parentWidget->vies_initiales = 3;
 }
 
 void LogOut::Print_Vitesse(int vitesse)

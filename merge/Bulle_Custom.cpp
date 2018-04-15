@@ -1,4 +1,5 @@
 #include "Bulle_custom.h"
+#include "Play.h"
 
 Bulle_Custom::Bulle_Custom()
 {
@@ -20,7 +21,6 @@ Bulle_Custom::Bulle_Custom()
 
 	//Dimension de départ
 	rayon =150;
-
 }
 
 Bulle_Custom::~Bulle_Custom()

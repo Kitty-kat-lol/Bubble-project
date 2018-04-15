@@ -33,10 +33,29 @@ int main(int argc, char *argv[])
 	QWidget *options = tabs->widget(2);
 
 	fond->setCentralWidget(central);
+	//tab des scores
+	
+		QVBoxLayout *scores_layout = new QVBoxLayout;
+		Scores *scores_wid = new Scores;
+		scores_layout->addWidget(scores_wid);
+
+		scores->setLayout(scores_layout);
+	
+	//autres tabs
+	
+		QVBoxLayout *option_layout = new QVBoxLayout;
+		Options *option_wid = new Options;
+		option_layout->addWidget(option_wid);
+
+		options->setLayout(option_layout);
+	
 	//tab de jeu
-	{
+	
 		QVBoxLayout *play_layout = new QVBoxLayout;
 		Play *play_wid = new Play;
+		//Q_OBJECT::connect(option_wid->une_vie, SIGNAL(toggled(bool)), play_wid->test->Player, SLOT(set_1vie(bool)));
+		//play_wid->test->Player->init_vie(option_wid);
+
 		play_layout->addWidget(play_wid);
 		/*QMovie *movie = new QMovie();
 		movie->setFileName("giphy.gif");
@@ -48,23 +67,8 @@ int main(int argc, char *argv[])
 		play->setStyleSheet("background-image:url(plain.png);font: bold; color: blue;font-size: 36px;height: 48px;width: 120px;");
 
 		play->setLayout(play_layout);
-	}
-	//tab des scores
-	{
-		QVBoxLayout *scores_layout = new QVBoxLayout;
-		Scores *scores_wid = new Scores;
-		scores_layout->addWidget(scores_wid);
-
-		scores->setLayout(scores_layout);
-	}
-	//autres tabs
-	{
-		QVBoxLayout *option_layout = new QVBoxLayout;
-		Options *option_wid = new Options;
-		option_layout->addWidget(option_wid);
-
-		options->setLayout(option_layout);
-	}
+	
+	
 	
 	fond->show();
 
