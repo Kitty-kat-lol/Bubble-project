@@ -50,6 +50,7 @@ public:
 	void customEvent(QEvent *input);
 	void gamepad_control();
 	void Death();
+	void bulle_event();
 
 	QGraphicsScene* get_Frame();
 	Bulle_Custom* get_Bulle();

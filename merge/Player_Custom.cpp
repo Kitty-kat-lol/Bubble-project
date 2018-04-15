@@ -15,6 +15,7 @@ Player_custom::Player_custom()
 	vies = 1;
 	//vies = this->parentWidget->option_wid->vies_initiales;
 	score = 0;
+	
 
 }
 

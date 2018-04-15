@@ -37,6 +37,7 @@ public:
 
 	int vies;
 	int score;
+	
 
 	bool check_borders(QString side="both");//options: left, right, both(default)
 	void move(QString direction);

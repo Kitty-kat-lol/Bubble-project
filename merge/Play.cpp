@@ -250,6 +250,7 @@ void Bubble_Trouble::keyPressEvent(QKeyEvent *event)
 	int count_escape = 0;
 	int test = (qrand() % 360);
 	Death();
+	bulle_event();
 	if (event->key() == Qt::Key_A || Xbox->buttonLeft())
 	{
 		Player->move("left");
@@ -331,6 +332,20 @@ void Bubble_Trouble::Death()
 
 			window()->close();
 		}
+	}
+}
+
+void Bubble_Trouble::bulle_event()
+{
+	if (Bulle->baby == 1)
+	{
+		Bulle->baby = 0;
+		Bulle_Custom *Bulle2 = new Bulle_Custom;
+		Frame->addItem(Bulle);
+		Bulle->Line_Top_Item = Line_Top_Item;
+		Bulle->Line_Right_Item = Line_Right_Item;
+		Bulle->Line_Left_Item = Line_Left_Item;
+		Bulle->Line_Bottom_Item = Line_Bottom_Item;
 	}
 }
 

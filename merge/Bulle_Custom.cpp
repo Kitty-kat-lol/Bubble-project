@@ -21,6 +21,28 @@ Bulle_Custom::Bulle_Custom()
 
 	//Dimension de départ
 	rayon =150;
+	power = 0;
+	baby = 0;
+}
+
+Bulle_Custom::Bulle_Custom(int posx, int posy)
+{
+
+	angle = (qrand() % 360);
+
+	//Commence dans le coin en haut à droite
+	Coordonnee_Bulle.setX(posx);
+	Coordonnee_Bulle.setY(posy);
+	setPos(mapToParent(Coordonnee_Bulle));
+
+	//Vitesses de départ
+	vitesse_x = -7;
+	vitesse_y = -7;
+	rayon = 20;
+
+	power = 1;
+
+
 }
 
 Bulle_Custom::~Bulle_Custom()
@@ -87,6 +109,7 @@ void Bulle_Custom::collision()
 		//Bulle hit
 		int point = 100; // * nbre de boules présentes
 		Player->add_score(point);
+		baby = 1;
 	}
 
 }

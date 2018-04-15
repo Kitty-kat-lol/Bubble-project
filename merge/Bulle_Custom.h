@@ -16,7 +16,9 @@ class Bulle_Custom : public QGraphicsItem
 	//Q_OBJECT
 public:
 	Bulle_Custom();
+	Bulle_Custom::Bulle_Custom(int posx, int posy);
 	~Bulle_Custom();
+
 	QRectF boundingRect() const;
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = Q_NULLPTR);
 //private:
@@ -33,6 +35,8 @@ public:
 	qreal angle;
 	qreal vitesse_x;
 	qreal vitesse_y;
+	int baby;
+	int power;
 	int rayon;
 	int layers;
 	void collision();
