@@ -339,13 +339,15 @@ void Bubble_Trouble::bulle_event()
 {
 	if (Bulle->baby == 1)
 	{
+		std::cout << Bulle->baby;
 		Bulle->baby = 0;
-		Bulle_Custom *Bulle2 = new Bulle_Custom;
-		Frame->addItem(Bulle);
-		Bulle->Line_Top_Item = Line_Top_Item;
-		Bulle->Line_Right_Item = Line_Right_Item;
-		Bulle->Line_Left_Item = Line_Left_Item;
-		Bulle->Line_Bottom_Item = Line_Bottom_Item;
+		Bulle_Custom *Bulle2 = new Bulle_Custom(1,1);
+		Frame->addItem(Bulle2);
+		Bulle2->Line_Top_Item = Line_Top_Item;
+		Bulle2->Line_Right_Item = Line_Right_Item;
+		Bulle2->Line_Left_Item = Line_Left_Item;
+		Bulle2->Line_Bottom_Item = Line_Bottom_Item;
+		Bulle2->Player = Player;
 	}
 }
 

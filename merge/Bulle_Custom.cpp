@@ -22,7 +22,7 @@ Bulle_Custom::Bulle_Custom()
 	//Dimension de départ
 	rayon =150;
 	power = 0;
-	baby = 0;
+	baby = 1;
 }
 
 Bulle_Custom::Bulle_Custom(int posx, int posy)
@@ -31,8 +31,8 @@ Bulle_Custom::Bulle_Custom(int posx, int posy)
 	angle = (qrand() % 360);
 
 	//Commence dans le coin en haut à droite
-	Coordonnee_Bulle.setX(posx);
-	Coordonnee_Bulle.setY(posy);
+	Coordonnee_Bulle.setX(100);//posx
+	Coordonnee_Bulle.setY(70);//posy
 	setPos(mapToParent(Coordonnee_Bulle));
 
 	//Vitesses de départ

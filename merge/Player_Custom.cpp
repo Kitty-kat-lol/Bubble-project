@@ -113,18 +113,18 @@ void Player_custom::move(QString direction)
 	{
 		this->setPos(mapToParent(-(deplacement_x), 0));
 		Coordonnee_Player = scenePos();
-		std::cout << "Mouvement!" << std::endl;
+		//std::cout << "Mouvement!" << std::endl;
 		debug_position_player();
-		std::cout << std::endl;
+		//std::cout << std::endl;
 		
 	}
 	else if (direction == "right" && check_borders("right"))
 	{
 		this->setPos(mapToParent(deplacement_x, 0));
 		Coordonnee_Player = scenePos();
-		std::cout << "Mouvement!" << std::endl;
+		//std::cout << "Mouvement!" << std::endl;
 		debug_position_player();
-		std::cout << std::endl;
+		//std::cout << std::endl;
 	}
 	return;
 }
@@ -148,19 +148,14 @@ void Player_custom::advance(int phase)
 	QThread::msleep(200);*/
 	//move("right");
 	
-	if (vies == 0)
-	{
-		//delete this; crie in pain 
-	}
-	
 	
 	return;
 }
 
 void Player_custom::debug_position_player()
 {
-	std::cout << "Position player x: " << Coordonnee_Player.rx() << std::endl;
-	std::cout << "Position player y: " << Coordonnee_Player.ry() << std::endl << std::endl;
+	//std::cout << "Position player x: " << Coordonnee_Player.rx() << std::endl;
+	//std::cout << "Position player y: " << Coordonnee_Player.ry() << std::endl << std::endl;
 }
 
 /*void Player_custom::check_death()
