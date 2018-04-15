@@ -292,7 +292,12 @@ void Bubble_Trouble::keyPressEvent(QKeyEvent *event)
 		{
 			temps->stop();
 			QMessageBox::StandardButton pause;
-			pause = QMessageBox::question(this, "Pause", "Quitter ?", QMessageBox::Yes | QMessageBox::No);
+			QString bob = "Quitter ? \n ";
+			bob += "Vies : ";
+			bob += QString::number(Player->get_vies());
+			bob += " \nScore : ";
+			bob += QString::number(Player->score);
+			pause = QMessageBox::question(this, "Pause", bob, QMessageBox::Yes | QMessageBox::No);
 			if (pause == QMessageBox::No) {
 				temps->start(15);
 			}
