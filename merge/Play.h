@@ -84,6 +84,7 @@ public:
 	void keyPressEvent(QKeyEvent *event);
 	void customEvent(QEvent *input);
 	void gamepad_control();
+	void death();
 
 	QGraphicsScene* get_Frame();
 	Bulle_Custom* get_Bulle();

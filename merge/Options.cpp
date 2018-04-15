@@ -64,7 +64,7 @@ Options::Options()
 	top_part->addWidget(Titre_Chances, 4, 2);
 	top_part->addWidget(Chances, 5, 2);
 
-	retour = new QPushButton("Retour");
+	retour = new QPushButton("Quitter");
 	events = new LogOut;
 	bottom_part->addWidget(events);
 	bottom_part->addWidget(retour);

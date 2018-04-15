@@ -22,6 +22,7 @@ public:
 	QGraphicsLineItem *Line_Left_Item;
 	QGraphicsLineItem *Line_Right_Item;
 	QGraphicsLineItem *Line_Bottom_Item;
+	
 	Arrow_Custom *Arrow;
 	Player_custom *Player;
 

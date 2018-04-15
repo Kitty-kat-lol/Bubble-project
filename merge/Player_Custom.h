@@ -31,6 +31,8 @@ public:
 	qreal deplacement_x;
 	int dimensions;
 
+	int vies;
+
 	bool check_borders(QString side="both");//options: left, right, both(default)
 	void move(QString direction);
 	void advance(int phase);
@@ -42,6 +44,7 @@ private:
 public slots :
 	void move_right();
 	void move_left();
+	void set_lives(int nb_vies);
 
 };
 

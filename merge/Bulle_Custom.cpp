@@ -72,9 +72,21 @@ void Bulle_Custom::collision()
 	{
 		vitesse_x *= -1;
 		std::cout << "La vitesse x est de: " << vitesse_x << std::endl;
-		delete this;
-		
 	}
+	else if (scene()->collidingItems(this).contains(Player))
+	{
+		//Pour éviter que la bulle traverse le player et le tue big time
+		vitesse_x *= -1;
+		vitesse_y *= -1;
+		std::cout << "La vitesse x est de: " << vitesse_x << std::endl;
+		std::cout << "La vitesse y est de: " << vitesse_y << std::endl;
+		Player->vies--;
+	}
+	else if (scene()->collidingItems(this).contains(Arrow))
+	{
+		//Bulle hit
+	}
+
 }
 
 void Bulle_Custom::advance(int phase)

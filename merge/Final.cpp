@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
 
 		options->setLayout(option_layout);
 	}
-			
+	
 	fond->show();
 
 

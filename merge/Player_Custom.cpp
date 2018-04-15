@@ -140,6 +140,11 @@ void Player_custom::move_left()
 	move("left");
 }
 
+void Player_custom::set_lives(int nb_vies)
+{
+	vies = nb_vies;
+}
+
 
 void Player_custom::move_right()
 {

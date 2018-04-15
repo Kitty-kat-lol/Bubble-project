@@ -62,7 +62,8 @@ void Play::Start_play()
 
 		Bubble_Trouble *test = new Bubble_Trouble;
 		App.setCentralWidget(test);
-		App.showMaximized();
+		//App.showMaximized();
+		App.showFullScreen();
 	}
 	else {
 	}
@@ -91,10 +92,6 @@ Bubble_Trouble::Bubble_Trouble()
 	
 	setStyleSheet("background-image:url(plain.png)");
 	//Frame->addItem(back);
-
-
-
-
 
 
 	//Ajout de lignes
@@ -249,6 +246,7 @@ void Bubble_Trouble::collision_bulle()
 
 void Bubble_Trouble::keyPressEvent(QKeyEvent *event)
 {
+	int count_escape = 0;
 	int test = (qrand() % 360);
 	if (event->key() == Qt::Key_A || Xbox->buttonLeft())
 	{
@@ -261,7 +259,24 @@ void Bubble_Trouble::keyPressEvent(QKeyEvent *event)
 	if (event->key() == Qt::Key_Space)
 	{
 		shoot_arrow();
-		//Player->move("right");
+
+	}
+	if (event->key() == Qt::Key_Escape)
+	{
+		if (count_escape % 2 == 0)
+		{
+			temps->stop();
+			QMessageBox::StandardButton pause;
+			pause = QMessageBox::question(this, "Pause", "Quitter ?", QMessageBox::Yes | QMessageBox::No);
+			if (pause == QMessageBox::No) {
+				temps->start(15);
+			}
+			else if (pause == QMessageBox::Yes)
+			{
+				window()->close();
+			}
+		}
+		
 	}
 
 	gamepad_control();
@@ -289,4 +304,12 @@ void Bubble_Trouble::gamepad_control()
 		shoot_arrow();
 	}
 
+}
+
+void Bubble_Trouble::death()
+{
+	if (Player->vies == 0)
+	{
+		//Gérer la fin du jeu
+	}
 }
