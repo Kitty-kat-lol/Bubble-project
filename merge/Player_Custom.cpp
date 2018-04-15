@@ -12,6 +12,9 @@ Player_custom::Player_custom()
 	setPos(mapToParent(Coordonnee_Player));
 
 	debug_position_player();
+
+	vies = 1;
+	score = 0;
 	
 }
 
@@ -50,6 +53,11 @@ void Player_custom::paint(QPainter * painter, const QStyleOptionGraphicsItem * o
 
 	painter->setBrush(couleur_centre);
 	painter->drawRect(hitbox);
+}
+
+int Player_custom::get_vies()
+{
+	return vies;
 }
 
 bool Player_custom::check_borders(QString side)
@@ -143,6 +151,11 @@ void Player_custom::move_left()
 void Player_custom::set_lives(int nb_vies)
 {
 	vies = nb_vies;
+}
+
+void Player_custom::add_score(int point)
+{
+	score = score + point;
 }
 
 

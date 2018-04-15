@@ -19,6 +19,7 @@ public:
 
 	QRectF boundingRect() const;
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = Q_NULLPTR);
+	int get_vies();
 
 	//private:
 	
@@ -32,6 +33,7 @@ public:
 	int dimensions;
 
 	int vies;
+	int score;
 
 	bool check_borders(QString side="both");//options: left, right, both(default)
 	void move(QString direction);
@@ -45,6 +47,7 @@ public slots :
 	void move_right();
 	void move_left();
 	void set_lives(int nb_vies);
+	void add_score(int point);
 
 };
 

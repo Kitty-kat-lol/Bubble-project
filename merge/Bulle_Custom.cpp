@@ -85,6 +85,8 @@ void Bulle_Custom::collision()
 	else if (scene()->collidingItems(this).contains(Arrow))
 	{
 		//Bulle hit
+		int point = 100; // * nbre de boules présentes
+		Player->add_score(point);
 	}
 
 }

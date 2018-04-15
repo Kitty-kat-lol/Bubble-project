@@ -17,6 +17,7 @@
 #include <Qmessagebox>
 #include <QFile>
 #include <QTextStream>
+#include<QTextEdit>
 
 
 #include <QMAINWINDOW>
@@ -114,5 +115,19 @@ public:
 
 	QGamepad *Xbox;
 
+};
+ // test afficher vies et autres infos
+class Out_text : public QTextEdit
+{
+	Q_OBJECT
+public:
+	Out_text(QString text);
+	~Out_text();
+
+	public slots:
+
+	void Print_Vies(int vies);
+	void Print_score(int score);
+	void Print_buff(QString buff);
 };
 #endif
