@@ -341,7 +341,7 @@ void Bubble_Trouble::bulle_event()
 	{
 		std::cout << Bulle->baby;
 		Bulle->baby = 0;
-		Bulle_Custom *Bulle2 = new Bulle_Custom(1,1);
+		Bulle_Custom *Bulle2 = new Bulle_Custom(Bulle->Coordonnee_Bulle.x(), Bulle->Coordonnee_Bulle.y());
 		Frame->addItem(Bulle2);
 		Bulle2->Line_Top_Item = Line_Top_Item;
 		Bulle2->Line_Right_Item = Line_Right_Item;

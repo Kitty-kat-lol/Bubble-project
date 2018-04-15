@@ -25,14 +25,14 @@ Bulle_Custom::Bulle_Custom()
 	baby = 1;
 }
 
-Bulle_Custom::Bulle_Custom(int posx, int posy)
+Bulle_Custom::Bulle_Custom(qreal posx, qreal posy)
 {
 
 	angle = (qrand() % 360);
 
 	//Commence dans le coin en haut à droite
-	Coordonnee_Bulle.setX(100);//posx
-	Coordonnee_Bulle.setY(70);//posy
+	Coordonnee_Bulle.setX(posx);//posx
+	Coordonnee_Bulle.setY(posy);//posy
 	setPos(mapToParent(Coordonnee_Bulle));
 
 	//Vitesses de départ
@@ -110,6 +110,10 @@ void Bulle_Custom::collision()
 		int point = 100; // * nbre de boules présentes
 		Player->add_score(point);
 		baby = 1;
+		if (power != 0)
+		{
+			delete this;
+		}
 	}
 
 }

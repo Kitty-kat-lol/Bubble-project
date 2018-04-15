@@ -16,7 +16,7 @@ class Bulle_Custom : public QGraphicsItem
 	//Q_OBJECT
 public:
 	Bulle_Custom();
-	Bulle_Custom::Bulle_Custom(int posx, int posy);
+	Bulle_Custom::Bulle_Custom(qreal posx, qreal posy);
 	~Bulle_Custom();
 
 	QRectF boundingRect() const;
