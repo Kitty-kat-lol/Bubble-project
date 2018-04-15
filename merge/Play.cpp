@@ -61,31 +61,6 @@ void Play::Start_play()
 	if(reply == QMessageBox::Yes) {
 
 		test = new Bubble_Trouble;
-		/*// Test ajout de boite de texte pour voir les trucs
-		QWidget *contain = new QWidget;
-		QVBoxLayout *vert = new QVBoxLayout;
-		vert->addWidget(test);
-
-		QHBoxLayout *hori = new QHBoxLayout;
-		QWidget *hori_contain = new QWidget;
-
-		//QLabel *live = new QLabel("Vies : " );
-		//QLabel *score = new QLabel("Score : " );
-		//QLabel *comment = new QLabel("");
-		
-		Out_text *live = new Out_text("Vies : ");
-		Out_text *score = new Out_text("Score : ");
-		Out_text *comment = new Out_text("");
-
-		hori->addWidget(live);
-		hori->addWidget(comment);
-		hori->addWidget(score);
-		hori_contain->setLayout(hori);
-		vert->addWidget(hori_contain);
-
-		contain->setLayout(vert);
-		App.setCentralWidget(contain);*/
-
 		App.setCentralWidget(test);
 		//App.showMaximized();
 		App.showFullScreen();
@@ -154,6 +129,7 @@ Bubble_Trouble::Bubble_Trouble()
 
 
 	//Gestion de la 2e bulle. Tests à mettre en commentaire
+	/*
 	Bulle_Custom *Bulle2 = new Bulle_Custom;
 	Frame->addItem(Bulle2);
 	Bulle2->vitesse_x = -7;
@@ -162,7 +138,7 @@ Bubble_Trouble::Bubble_Trouble()
 	Bulle2->Line_Top_Item = Line_Top_Item;
 	Bulle2->Line_Right_Item = Line_Right_Item;
 	Bulle2->Line_Left_Item = Line_Left_Item;
-	Bulle2->Line_Bottom_Item = Line_Bottom_Item;
+	Bulle2->Line_Bottom_Item = Line_Bottom_Item;*/
 
 
 	//Ajout des lignes utilisée pour la collision
@@ -358,33 +334,4 @@ void Bubble_Trouble::Death()
 	}
 }
 
-  // test afficher vies et autres infos
-Out_text::Out_text(QString text)
-{
-	setReadOnly(true);
-	setMaximumHeight(15);
-	append(text);
-}
-
-Out_text::~Out_text()
-{
-
-}
-
-void Out_text::Print_Vies(int vies)
-{
-	QString info_vie = QString::number(vies);
-	setPlainText(info_vie);
-}
-
-void Out_text::Print_score(int score)
-{
-	QString info_score = QString::number(score);
-	setPlainText(info_score);
-}
-
-void Out_text::Print_buff(QString buff)
-{
-	setPlainText(buff);
-}
 
