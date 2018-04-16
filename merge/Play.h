@@ -7,6 +7,7 @@
 #include "Player_Custom.h"
 #include "Arrow_Custom.h"
 #include "Input_FPGA.h"
+#include "Scores.h"
 
 #include <QWidget>
 #include <QMainWindow>
@@ -19,8 +20,9 @@
 #include <Qmessagebox>
 #include <QFile>
 #include <QTextStream>
-#include<QTextEdit>
+#include <QTextEdit>
 #include <QList>
+#include <QInputDialog>
 
 
 #include <QMAINWINDOW>

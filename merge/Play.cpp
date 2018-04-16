@@ -346,7 +346,17 @@ void Bubble_Trouble::Death()
 		}
 		else if (pause == QMessageBox::Yes)
 		{
+			bool ok;
+    QString text = QInputDialog::getText(this, "Input",
+                                         "Votre nom", QLineEdit::Normal,
+                                         "", &ok);
+    if (ok && !text.isEmpty()) {
+    stru_scores act;
+		act.score = Player->score;
+		act.name = text;
 
+		//Scores->add_scores(act);
+			
 			window()->close();
 		}
 	}
