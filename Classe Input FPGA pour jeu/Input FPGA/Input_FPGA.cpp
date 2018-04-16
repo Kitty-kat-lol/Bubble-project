@@ -80,12 +80,15 @@ void Input_FPGA::read()
 	
 
 	//Phoneme: U
-	if ((filtre_0 - U.tolerance >= U.filtre_0 && filtre_0 + U.tolerance <= U.filtre_0) &&
-		(filtre_1 - U.tolerance >= filtre_1 && filtre_1 + U.tolerance <= filtre_1) &&
-		(filtre_2 - U.tolerance >= filtre_2 && filtre_2 + U.tolerance <= filtre_2) &&
-		(filtre_3 - U.tolerance >= filtre_3 && filtre_3 + U.tolerance <= filtre_3) )
+	if (filtre_0 <=25 && 
+		filtre_1 >= 50 && filtre_1 <= 140 
+		&& filtre_2<=60)
 	{
-		U.count_detected++;
+		if (U.count_detected <= 16)
+		{
+			U.count_detected++;
+		}
+		
 		cout << "U detected!" << endl;
 	}
 	else
@@ -98,10 +101,15 @@ void Input_FPGA::read()
 	}
 
 	//Phoneme: A
-	if (filtre_3 - A.tolerance >= A.filtre_3 && filtre_3 + A.tolerance <= A.filtre_3 &&
-		filtre_2 - A.tolerance >= A.filtre_2 && filtre_2 + A.tolerance <= A.filtre_2 )
+	if (filtre_0 >=10 &&
+		filtre_2 >=60 &&
+		filtre_3 >= 150)
 	{
-		A.count_detected++;
+		if (A.count_detected <= 16)
+		{
+			A.count_detected++;
+		}
+		
 		cout << "A detected!" << endl;
 	}
 	else
@@ -114,10 +122,10 @@ void Input_FPGA::read()
 	}
 
 	//Phoneme: I
-	if ((filtre_0 - I.tolerance >= I.filtre_0 && filtre_0 + I.tolerance <= I.filtre_0) &&
-		(filtre_1 - I.tolerance >= I.filtre_1 && filtre_1 + I.tolerance <= I.filtre_1) &&
-		(filtre_2 - I.tolerance >= I.filtre_2 && filtre_2 + I.tolerance <= I.filtre_2) &&
-		(filtre_3 - I.tolerance >= I.filtre_3 && filtre_3 + I.tolerance <= I.filtre_3))
+	if (filtre_0 >= 4 && filtre_0 <= 60 &&
+		filtre_1 >= 4 && filtre_1 <= 60 && 
+		/*filtre_2 >= 2 && filtre_2 <= 60 &&*/ 
+		filtre_3 >= 4 && filtre_3 <= 60)
 	{
 		I.count_detected++;
 		cout << "I detected!" << endl;
@@ -132,7 +140,7 @@ void Input_FPGA::read()
 	}
 
 	//Phoneme: O
-	if (filtre_3>=100)
+	if (filtre_0<=50 && filtre_1 <= 50 && filtre_2 <= 60 &&  filtre_3 >= 100)
 	{
 		O.count_detected++;
 		cout << "O detected!" << endl;
@@ -142,7 +150,7 @@ void Input_FPGA::read()
 		if (O.count_detected != 0)
 		{
 			O.count_detected--;
-			cout << "O lost..." << endl;
+			//cout << "O lost..." << endl;
 		}		
 	}
 
