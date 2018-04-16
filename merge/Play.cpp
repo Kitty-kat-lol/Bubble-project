@@ -34,7 +34,38 @@ Play::Play()
 	//connect
 	QObject::connect(Start, SIGNAL(clicked()), this, SLOT(Start_play()));
 	QObject::connect(Quit, SIGNAL(clicked()), this, SLOT(Quit_play()));
+}
 
+Play::Play(Options *options, Scores *scores)
+{
+QPushButton *Start = new QPushButton("Start");
+QPushButton *Quit = new QPushButton("Quit");
+QLabel *RandD = new QLabel("Production de l'�quipe P9!");
+
+QHBoxLayout *Gametop = new QHBoxLayout;
+QVBoxLayout *Gamelist = new QVBoxLayout;
+
+
+QWidget * widget = new QWidget();
+QGridLayout * layout = new QGridLayout(widget);
+
+Start->setFixedSize(100, 50);
+Quit->setFixedSize(100, 50);
+
+layout->addWidget(Start, 0, 0, 0, 0, Qt::AlignTop | Qt::AlignLeft);
+layout->addWidget(Quit, 0, 0, 1, 1, Qt::AlignVCenter | Qt::AlignLeft);
+layout->addWidget(RandD, 1, 0, 1, 1, Qt::AlignVCenter | Qt::AlignLeft);
+
+RandD->setStyleSheet("QLabel{background: transparent;}");
+Start->setStyleSheet("QPushButton{background: transparent;}");
+Quit->setStyleSheet("QPushButton{background: transparent;}");
+
+
+setLayout(layout);
+
+//connect
+QObject::connect(Start, SIGNAL(clicked()), this, SLOT(Start_play()));
+QObject::connect(Quit, SIGNAL(clicked()), this, SLOT(Quit_play()));
 }
 
 Play::~Play()
@@ -61,6 +92,7 @@ void Play::Start_play()
 	if(reply == QMessageBox::Yes) {
 
 		test = new Bubble_Trouble;
+		test = new Bubble_Trouble(options, scores);
 		App.setCentralWidget(test);
 		//App.showMaximized();
 		App.showFullScreen();
@@ -193,6 +225,75 @@ Bubble_Trouble::Bubble_Trouble()
 	std::cout << "Bulle y: " << Bulle->scenePos().y() << std::endl;
 }
 
+Bubble_Trouble(Option *option, Scores *scores)
+{
+	//Cr�e la scene de jeu en plein �cran
+	this->setWindowState(Qt::WindowFullScreen);
+	Frame = new QGraphicsScene(geometry().x(), geometry().y(), 1900, 1070);//1900 1070
+
+	//Cr�e un timer qui a ticker � chaque 20 msecondes et trigger la fonction advance pour les animations
+	temps = new QTimer;
+	temps->start(15);
+	connect(temps, SIGNAL(timeout()), Frame, SLOT(advance()));
+
+	setStyleSheet("background-image:url(plain.png)");
+
+	//Ajout de lignes
+	QPen borders(Qt::black);
+
+	Line_Top.setPoints(Frame->sceneRect().topLeft(), Frame->sceneRect().topRight());
+	Line_Left.setPoints(Frame->sceneRect().topLeft(), Frame->sceneRect().bottomLeft());
+	Line_Right.setPoints(Frame->sceneRect().topRight(), Frame->sceneRect().bottomRight());
+	Line_Bottom.setPoints(Frame->sceneRect().bottomLeft(), Frame->sceneRect().bottomRight());
+
+	Line_Top_Item = new QGraphicsLineItem;
+	Line_Right_Item = new QGraphicsLineItem;
+	Line_Left_Item = new QGraphicsLineItem;
+	Line_Bottom_Item = new QGraphicsLineItem;
+
+	Line_Top_Item->setLine(Line_Top);
+	Line_Right_Item->setLine(Line_Right);
+	Line_Left_Item->setLine(Line_Left);
+	Line_Bottom_Item->setLine(Line_Bottom);
+
+	//Ajout de la premi�re bulle
+	Bulle = new Bulle_Custom;
+	Frame->addItem(Bulle);
+	Bulle->Line_Top_Item = Line_Top_Item;
+	Bulle->Line_Right_Item = Line_Right_Item;
+	Bulle->Line_Left_Item = Line_Left_Item;
+	Bulle->Line_Bottom_Item = Line_Bottom_Item;
+
+	//Ajout du player
+	Player = new Player_custom;
+	Frame->addItem(Player);
+	Player->Line_Right_Item = Line_Right_Item;
+	Player->Line_Left_Item = Line_Left_Item;
+	Bulle->Player = Player;
+
+	//Ajout des lignes utilis�e pour la collision
+	Frame->addItem(Line_Top_Item);
+	Frame->addItem(Line_Right_Item);
+	Frame->addItem(Line_Left_Item);
+	Frame->addItem(Line_Bottom_Item);
+
+	//Ajoute la scene dans le view et active le antialiasing (qualit� visuelle)
+	setScene(Frame);
+	setRenderHints(QPainter::Antialiasing);
+
+	//Test de gamepad
+	Xbox = new QGamepad;
+
+	//Pour les phonemes:
+	Carte = new Input_FPGA;
+	QTimer *thread_FPGA = new QTimer;
+	thread_FPGA->start(20);
+	QObject::connect(thread_FPGA, SIGNAL(timeout()), Carte, SLOT(call_read()));
+
+	//Bulle->setPos()
+	std::cout << "Bulle x: " << Bulle->scenePos().x() << std::endl;
+	std::cout << "Bulle y: " << Bulle->scenePos().y() << std::endl;
+}
 
 Bubble_Trouble::~Bubble_Trouble()
 {
@@ -357,8 +458,13 @@ void Bubble_Trouble::Death()
 		act.score = Player->score;
 		act.name = text;
 
+<<<<<<< HEAD
 			//Scores->add_scores(act);
 			
+=======
+		//Scores->add_scores(act);
+
+>>>>>>> ff18a4fcc5e479834274fd69b1da5ac504b0cad2
 			window()->close();
 		}
 	}
