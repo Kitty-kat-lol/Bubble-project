@@ -24,13 +24,9 @@ Play::Play()
 	layout->addWidget(Quit, 0, 0, 1, 1, Qt::AlignVCenter | Qt::AlignLeft);
 	layout->addWidget(RandD, 1, 0, 1, 1, Qt::AlignVCenter | Qt::AlignLeft);
 
-	/*QPixmap bkgnd;
-	QSize Dimension(500, 200);
-	bkgnd.load("bubbletrouble.png");
-	setBrush(QPalette::Background, bkgnd);
-	/*Start->setStyleSheet("font: bold;background-image: Red;font-size: 36px;height: 48px;width: 120px;");
-	Quit->setStyleSheet("font: bold;background-image: Blue;font-size: 36px;height: 48px;width: 120px;");
-	setStyleSheet("background-image:url(bubbletrouble.png)");*/
+	RandD->setStyleSheet("QLabel{background: transparent;}");
+	Start->setStyleSheet("QPushButton{background: transparent;}");
+	Quit->setStyleSheet("QPushButton{background: transparent;}");
 
 	
 	setLayout(layout);

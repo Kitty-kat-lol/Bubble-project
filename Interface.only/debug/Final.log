@@ -1,17 +1,2 @@
-﻿  Generate moc_predefs.h
-  MOC Options.h
-  MOC Play.h
-  MOC Scores.h
-  Final.cpp
-  Interface.cpp
-  Options.cpp
-c:\users\pierre-alexandre\documents\github\bubble-project\interface.only\options.cpp(14): warning C4189: 'Titre' : variable locale initialisée mais non référencée
-  Play.cpp
-c:\users\pierre-alexandre\documents\github\bubble-project\interface.only\play.cpp(14): warning C4189: 'Gamelist' : variable locale initialisée mais non référencée
-c:\users\pierre-alexandre\documents\github\bubble-project\interface.only\play.cpp(13): warning C4189: 'Gametop' : variable locale initialisée mais non référencée
-  Scores.cpp
-  moc_Options.cpp
-  moc_Play.cpp
-  moc_Scores.cpp
-  Génération de code en cours...
+﻿  Final.cpp
   Final.vcxproj -> C:\Users\Pierre-Alexandre\Documents\GitHub\Bubble-project\Interface.only\debug\Final.exe
