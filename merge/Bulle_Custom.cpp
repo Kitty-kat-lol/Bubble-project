@@ -58,24 +58,23 @@ QRectF Bulle_Custom::boundingRect() const
 
 void Bulle_Custom::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)
 {
-	int Random = rand() % 3;
 	QRectF hitbox = boundingRect();
 	QBrush couleur_centre(Qt::green);
-	QPixmap bkgnd;
-	if (Random = 0)
+	bkgnd1.load("player.png");
+	bkgnd2.load("Prof.png");
+	bkgnd3.load("Denis.png");
+	if (Random == 0)
 	{
-		bkgnd.load("player.png");
-		couleur_centre.setTexture(bkgnd);
+		
+		couleur_centre.setTexture(bkgnd1);
 	}
-	else if (Random = 1)
+	else if (Random == 1)
 	{
-		bkgnd.load("Prof.png");
-		couleur_centre.setTexture(bkgnd);
+		couleur_centre.setTexture(bkgnd2);
 	}
-	else if (Random = 2)
+	else if (Random == 2)
 	{
-		bkgnd.load("Denis.png");
-		couleur_centre.setTexture(bkgnd);
+		couleur_centre.setTexture(bkgnd3);
 	}
 	
 

@@ -30,6 +30,10 @@ public:
 	Arrow_Custom *Arrow;
 	Player_custom *Player;
 
+	QPixmap bkgnd1;
+	QPixmap bkgnd2;
+	QPixmap bkgnd3;
+	int Random = rand() % 3;
 
 	QPointF Coordonnee_Bulle;
 	qreal angle;

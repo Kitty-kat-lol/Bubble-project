@@ -235,7 +235,7 @@ Bubble_Trouble::Bubble_Trouble(Options *options, Scores *score)
 	temps->start(15);
 	connect(temps, SIGNAL(timeout()), Frame, SLOT(advance()));
 	
-	setStyleSheet("background-image:url(plain.png)");
+	setStyleSheet("background-image:url(Stadium.png)");
 
 	//Ajout de lignes
 	QPen borders(Qt::black);
