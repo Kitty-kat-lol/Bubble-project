@@ -178,7 +178,8 @@ void Player_custom::set_lives(int nb_vies)
 
 void Player_custom::add_score(int point)
 {
-	score = score + point;
+	int Point = point;
+	score += Point;
 }
 
 void Player_custom::set_1vie(bool etat)

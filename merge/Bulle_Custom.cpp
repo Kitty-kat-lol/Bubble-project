@@ -110,14 +110,15 @@ void Bulle_Custom::collision()
 		//Bulle hit
 		layers--;
 		cout << layers;
-		if (layers == 0)
-		{
-			delete this;
-		}
+		
 		int point = 100; // * nbre de boules présentes
 		Player->add_score(point);
 		baby = 1;
-		if (power != 0)
+		/*if (power != 0)
+		{
+			delete this;
+		}*/
+		if (layers == 0)
 		{
 			delete this;
 		}

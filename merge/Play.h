@@ -3,6 +3,7 @@
 
 
 #include "Bulle_custom.h"
+#include "Bebe_Bulle.h"
 #include "Player_Custom.h"
 #include "Arrow_Custom.h"
 #include "Input_FPGA.h"
@@ -39,6 +40,7 @@
 #include <QGraphicsPixmapItem>
 #include <QGamepad>
 #include <QGraphicsObject>
+#include <Qlist>
 
 
 
@@ -58,7 +60,8 @@ public:
 	void Death();
 	void bulle_event();
 	void phoneme_control();
-	Qlist<*Bebe_Bulle> Bebelist;
+
+	QList<Bebe_Bulle *> Bebelist;
 
 	QGraphicsScene* get_Frame();
 	Bulle_Custom* get_Bulle();
