@@ -23,6 +23,7 @@ Bulle_Custom::Bulle_Custom()
 	rayon =150;
 	power = 0;
 	baby = 1;
+	layers = -1;
 }
 
 Bulle_Custom::Bulle_Custom(qreal posx, qreal posy)
@@ -41,7 +42,7 @@ Bulle_Custom::Bulle_Custom(qreal posx, qreal posy)
 	rayon = 20;
 
 	power = 1;
-
+	layers = 1;
 
 }
 
@@ -107,6 +108,11 @@ void Bulle_Custom::collision()
 	else if (scene()->collidingItems(this).contains(Arrow))
 	{
 		//Bulle hit
+		layers--;
+		if (layers == 0)
+		{
+			delete this;
+		}
 		int point = 100; // * nbre de boules présentes
 		Player->add_score(point);
 		baby = 1;

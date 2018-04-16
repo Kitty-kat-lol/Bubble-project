@@ -5,6 +5,7 @@
 #include "Bulle_custom.h"
 #include "Player_Custom.h"
 #include "Arrow_Custom.h"
+#include "Input_FPGA.h"
 
 #include <QWidget>
 #include <QMainWindow>
@@ -36,10 +37,11 @@
 #include <QKeyEvent>
 #include <QGraphicsPixmapItem>
 #include <QGamepad>
+#include <QGraphicsObject>
 
 class Bubble_Trouble : public QGraphicsView
 {
-
+	
 public:
 	Bubble_Trouble();
 	~Bubble_Trouble();
@@ -56,6 +58,7 @@ public:
 	Bulle_Custom* get_Bulle();
 
 	QTimer* get_temps();
+	
 
 
 	void collision_bulle();
@@ -79,6 +82,8 @@ public:
 	//Plan_Frame Plan;
 
 	QGamepad *Xbox;
+	Input_FPGA *Carte;
+
 
 };
 

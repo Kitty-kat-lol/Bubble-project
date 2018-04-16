@@ -1,10 +1,10 @@
 TEMPLATE     = vcapp
 TARGET       = Final
 CONFIG      += warn_on qt debug_and_release windows console
-HEADERS     += Interface.h Options.h Scores.h Play.h Arrow_Custom.h Bulle_Custom.h Player_Custom.h
-SOURCES     += Interface.cpp Final.cpp Options.cpp Scores.cpp Play.cpp Arrow_Custom.cpp Bulle_Custom.cpp Player_Custom.cpp
+HEADERS     += Interface.h Options.h Scores.h Play.h Arrow_Custom.h Bulle_Custom.h Player_Custom.h Input_FPGA.h Registres.h 
+SOURCES     += Interface.cpp Final.cpp Options.cpp Scores.cpp Play.cpp Arrow_Custom.cpp Bulle_Custom.cpp Player_Custom.cpp Input_FPGA.cpp
 INCLUDEPATH += .
-LIBS	      += 
+LIBS	      += CommunicationFPGA.lib
 QT += widgets
 QT += 3dquickscene2d
 QT += 3dinput

@@ -174,7 +174,14 @@ Bubble_Trouble::Bubble_Trouble()
 
 
 	//Test de gamepad
+	
 	Xbox = new QGamepad;
+
+	Carte = new Input_FPGA;
+	QTimer *thread_FPGA = new QTimer;
+	thread_FPGA->start(200);
+	QObject::connect(thread_FPGA, SIGNAL(timeout()), Carte, SLOT(call_read()));
+	QObject::connect(Carte, SIGNAL(B_out()), this->Player, SLOT(move_right()));
 
 
 	//std::cout << "Max x: " << Plan.horizontal_max << std::endl;
@@ -286,6 +293,12 @@ void Bubble_Trouble::keyPressEvent(QKeyEvent *event)
 		}
 	}
 	gamepad_control();
+
+	Carte->read();
+	if (Carte->button_pressed())
+	{
+		shoot_arrow();
+	}
 }
 
 void Bubble_Trouble::customEvent(QEvent * input)
@@ -348,6 +361,8 @@ void Bubble_Trouble::bulle_event()
 		Bulle2->Line_Left_Item = Line_Left_Item;
 		Bulle2->Line_Bottom_Item = Line_Bottom_Item;
 		Bulle2->Player = Player;
+		Bulle2->Arrow = Arrow;
+		Bulle2->layers = 1;
 	}
 }
 

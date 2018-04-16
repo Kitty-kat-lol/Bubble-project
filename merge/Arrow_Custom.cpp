@@ -7,7 +7,7 @@ Arrow_Custom::Arrow_Custom()
 	rayon_x = 10;
 	rayon_y = 60;
 
-	vitesse_y = -10;
+	vitesse_y = -15;
 
 	Coordonnee_Arrow.setX(100);
 	Coordonnee_Arrow.setY(70);

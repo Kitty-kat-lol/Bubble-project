@@ -5,6 +5,7 @@
 
 #include <QPainter>
 #include <QGraphicsItem>
+#include <QGraphicsObject>
 #include <QGraphicsScene>
 #include <QThread>
 #include <iostream>
@@ -12,7 +13,7 @@
 #include "Options.h"
 
 
-class Player_custom: public QGraphicsItem
+class Player_custom: public QGraphicsObject
 {
 	//Q_OBJECT
 public:
