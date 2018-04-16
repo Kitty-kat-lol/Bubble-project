@@ -8,6 +8,7 @@
 #include "Arrow_Custom.h"
 #include "Input_FPGA.h"
 #include "Scores.h"
+#include "Options.h"
 
 #include <QWidget>
 #include <QMainWindow>
@@ -52,6 +53,7 @@ class Bubble_Trouble : public QGraphicsView
 
 public:
 	Bubble_Trouble();
+	Bubble_Trouble(Option *option, Scores *scores);
 	~Bubble_Trouble();
 
 	void debug_position_bulle();
@@ -110,6 +112,7 @@ class Play :public QWidget
 	Q_OBJECT
 public:
 	Play();
+	Play(Option *option, Scores *scores);
 	~Play();
 
 	QPushButton *Start;
