@@ -7,7 +7,8 @@
 #include <QThread>
 #include <iostream>
 
-class Arrow_Custom: public QGraphicsItem
+
+class Arrow_Custom: public QGraphicsItem 
 {
 public:
 	Arrow_Custom();

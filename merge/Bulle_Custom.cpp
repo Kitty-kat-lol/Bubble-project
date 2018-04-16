@@ -109,6 +109,7 @@ void Bulle_Custom::collision()
 	{
 		//Bulle hit
 		layers--;
+		cout << layers;
 		if (layers == 0)
 		{
 			delete this;
