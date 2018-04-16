@@ -177,6 +177,7 @@ Bubble_Trouble::Bubble_Trouble()
 	
 	Xbox = new QGamepad;
 
+	//Pour les phonemes:
 	Carte = new Input_FPGA;
 	QTimer *thread_FPGA = new QTimer;
 	thread_FPGA->start(200);
@@ -294,11 +295,7 @@ void Bubble_Trouble::keyPressEvent(QKeyEvent *event)
 	}
 	gamepad_control();
 
-	Carte->read();
-	if (Carte->button_pressed())
-	{
-		shoot_arrow();
-	}
+	
 }
 
 void Bubble_Trouble::customEvent(QEvent * input)
@@ -364,6 +361,32 @@ void Bubble_Trouble::bulle_event()
 		Bulle2->Arrow = Arrow;
 		Bulle2->layers = 1;
 	}
+}
+
+void Bubble_Trouble::phoneme_control()
+{
+	Carte->read();
+	if (Carte->A_detected())
+	{
+		//Action
+	}
+	else if (Carte->O_detected())
+	{
+		//Action
+	}
+	else if (Carte->I_detected())
+	{
+		//Action
+	}
+	else if(Carte->U_detected())
+	{
+		//Action
+	}
+	else if (Carte->button_pressed())
+	{
+		//Test
+	}
+	
 }
 
 

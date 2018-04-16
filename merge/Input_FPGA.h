@@ -72,7 +72,7 @@ signals:
 	void U_out();
 	void B_out();
 	
-	public slots:
+public slots:
 	void call_read();
 	
 };

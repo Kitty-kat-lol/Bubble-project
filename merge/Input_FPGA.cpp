@@ -182,13 +182,8 @@ void Input_FPGA::read()
 	}
 
 	
-	std::cout << "Bouton: " << Button_State << std::endl;
-	
-	
-	//read();
-	
-	
-	
+	//std::cout << "Bouton: " << Button_State << std::endl;
+		
 }
 
 void Input_FPGA::print_CMD()
@@ -349,5 +344,6 @@ bool Input_FPGA::button_pressed()
 void Input_FPGA::call_read()
 {
 	read();
+	input_to_signal();
 }
 

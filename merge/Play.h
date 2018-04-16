@@ -39,6 +39,9 @@
 #include <QGamepad>
 #include <QGraphicsObject>
 
+
+
+
 class Bubble_Trouble : public QGraphicsView
 {
 	
@@ -53,6 +56,7 @@ public:
 	void gamepad_control();
 	void Death();
 	void bulle_event();
+	void phoneme_control();
 
 	QGraphicsScene* get_Frame();
 	Bulle_Custom* get_Bulle();

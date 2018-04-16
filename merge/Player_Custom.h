@@ -4,6 +4,7 @@
 
 
 #include <QPainter>
+#include <QObject>
 #include <QGraphicsItem>
 #include <QGraphicsObject>
 #include <QGraphicsScene>
@@ -13,9 +14,12 @@
 #include "Options.h"
 
 
-class Player_custom: public QGraphicsObject
+
+class Player_custom: public QObject, public QGraphicsItem
 {
-	//Q_OBJECT
+	
+	Q_OBJECT
+	Q_INTERFACES(QGraphicsItem)
 public:
 	Player_custom();
 	~Player_custom();
@@ -47,7 +51,7 @@ public:
 	//void check_death();
 	
 
-private:
+
 	
 public slots :
 	void move_right();
@@ -61,5 +65,6 @@ public slots :
 //signals:
 	//void send_death();
 };
+
 
 #endif
