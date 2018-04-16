@@ -180,9 +180,9 @@ Bubble_Trouble::Bubble_Trouble()
 	//Pour les phonemes:
 	Carte = new Input_FPGA;
 	QTimer *thread_FPGA = new QTimer;
-	thread_FPGA->start(200);
+	thread_FPGA->start(20);
 	QObject::connect(thread_FPGA, SIGNAL(timeout()), Carte, SLOT(call_read()));
-	QObject::connect(Carte, SIGNAL(B_out()), this->Player, SLOT(move_right()));
+	//QObject::connect(Carte, SIGNAL(B_out()), this->Player, SLOT(move_right()));
 
 
 	//std::cout << "Max x: " << Plan.horizontal_max << std::endl;

@@ -39,7 +39,7 @@ Bulle_Custom::Bulle_Custom(qreal posx, qreal posy)
 	//Vitesses de départ
 	vitesse_x = -7;
 	vitesse_y = -7;
-	rayon = 20;
+	rayon = 80;
 
 	power = 1;
 	layers = 1;
