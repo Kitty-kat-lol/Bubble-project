@@ -19,6 +19,7 @@
 #include <QFile>
 #include <QTextStream>
 #include<QTextEdit>
+#include <QList>
 
 
 #include <QMAINWINDOW>
@@ -44,7 +45,7 @@
 
 class Bubble_Trouble : public QGraphicsView
 {
-	
+
 public:
 	Bubble_Trouble();
 	~Bubble_Trouble();
@@ -57,12 +58,13 @@ public:
 	void Death();
 	void bulle_event();
 	void phoneme_control();
+	Qlist<*Bebe_Bulle> Bebelist;
 
 	QGraphicsScene* get_Frame();
 	Bulle_Custom* get_Bulle();
 
 	QTimer* get_temps();
-	
+
 
 
 	void collision_bulle();

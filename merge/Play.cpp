@@ -8,7 +8,7 @@ Play::Play()
 {
 	QPushButton *Start = new QPushButton("Start");
 	QPushButton *Quit = new QPushButton("Quit");
-	QLabel *RandD = new QLabel("Production de l'équipe P9!");
+	QLabel *RandD = new QLabel("Production de l'ï¿½quipe P9!");
 
 	QHBoxLayout *Gametop = new QHBoxLayout;
 	QVBoxLayout *Gamelist = new QVBoxLayout;
@@ -28,7 +28,7 @@ Play::Play()
 	Start->setStyleSheet("QPushButton{background: transparent;}");
 	Quit->setStyleSheet("QPushButton{background: transparent;}");
 
-	
+
 	setLayout(layout);
 
 	//connect
@@ -46,7 +46,7 @@ void Play::Quit_play()
 {
 	QMessageBox::StandardButton reply;
 	reply = QMessageBox::question(this, "", "Quit?",QMessageBox::Yes | QMessageBox::No);
-		
+
 	if (reply == QMessageBox::Yes) {
 		QApplication::quit();
 	}
@@ -57,7 +57,7 @@ void Play::Quit_play()
 void Play::Start_play()
 {
 	QMessageBox::StandardButton reply;
-	reply = QMessageBox::question(this, "Start", "Prêt ?", QMessageBox::Yes | QMessageBox::No);
+	reply = QMessageBox::question(this, "Start", "Prï¿½t ?", QMessageBox::Yes | QMessageBox::No);
 	if(reply == QMessageBox::Yes) {
 
 		test = new Bubble_Trouble;
@@ -77,11 +77,11 @@ void Play::Start_play()
 
 Bubble_Trouble::Bubble_Trouble()
 {
-	//Crée la scene de jeu en plein écran
+	//Crï¿½e la scene de jeu en plein ï¿½cran
 	this->setWindowState(Qt::WindowFullScreen);
 	Frame = new QGraphicsScene(geometry().x(), geometry().y(), 1900, 1070);//1900 1070
 
-	//Crée un timer qui a ticker à chaque 20 msecondes et trigger la fonction advance pour les animations
+	//Crï¿½e un timer qui a ticker ï¿½ chaque 20 msecondes et trigger la fonction advance pour les animations
 	temps = new QTimer;
 	temps->start(15);
 	connect(temps, SIGNAL(timeout()), Frame, SLOT(advance()));
@@ -89,7 +89,7 @@ Bubble_Trouble::Bubble_Trouble()
 	//tentative de background
 /*	QPixmap pim("C:\\Users\casto\\Pictures\\Wallpapers\\raven_bird_flying_smoke_black_white_92907_1920x1080.jpg");
 	QGraphicsPixmapItem *back = new QGraphicsPixmapItem(pim);*/
-	
+
 	setStyleSheet("background-image:url(plain.png)");
 	//Frame->addItem(back);
 
@@ -112,7 +112,7 @@ Bubble_Trouble::Bubble_Trouble()
 	Line_Left_Item->setLine(Line_Left);
 	Line_Bottom_Item->setLine(Line_Bottom);
 
-	//Ajout de la première bulle
+	//Ajout de la premiï¿½re bulle
 	Bulle = new Bulle_Custom;
 	Frame->addItem(Bulle);
 	Bulle->Line_Top_Item = Line_Top_Item;
@@ -128,7 +128,7 @@ Bubble_Trouble::Bubble_Trouble()
 	Bulle->Player = Player;
 
 
-	//Gestion de la 2e bulle. Tests à mettre en commentaire
+	//Gestion de la 2e bulle. Tests ï¿½ mettre en commentaire
 	/*
 	Bulle_Custom *Bulle2 = new Bulle_Custom;
 	Frame->addItem(Bulle2);
@@ -141,7 +141,7 @@ Bubble_Trouble::Bubble_Trouble()
 	Bulle2->Line_Bottom_Item = Line_Bottom_Item;*/
 
 
-	//Ajout des lignes utilisée pour la collision
+	//Ajout des lignes utilisï¿½e pour la collision
 	Frame->addItem(Line_Top_Item);
 	Frame->addItem(Line_Right_Item);
 	Frame->addItem(Line_Left_Item);
@@ -160,21 +160,21 @@ Bubble_Trouble::Bubble_Trouble()
 	Plan.vertical_max *= 0.5;
 
 	/*Note:
-	Le top est négatif et on a un plan cartésien centré dans la fenêtre pour les positions
+	Le top est nï¿½gatif et on a un plan cartï¿½sien centrï¿½ dans la fenï¿½tre pour les positions
 	*/
 
 	//Bulle->setPos(Plan.horizontal_min, Plan.vertical_max);
 
 
 
-	//Ajoute la scene dans le view et active le antialiasing (qualité visuelle)
+	//Ajoute la scene dans le view et active le antialiasing (qualitï¿½ visuelle)
 	setScene(Frame);
 	setRenderHints(QPainter::Antialiasing);
 
 
 
 	//Test de gamepad
-	
+
 	Xbox = new QGamepad;
 
 	//Pour les phonemes:
@@ -295,7 +295,7 @@ void Bubble_Trouble::keyPressEvent(QKeyEvent *event)
 	}
 	gamepad_control();
 
-	
+
 }
 
 void Bubble_Trouble::customEvent(QEvent * input)
@@ -349,7 +349,7 @@ void Bubble_Trouble::bulle_event()
 {
 	if (Bulle->baby == 1)
 	{
-		std::cout << Bulle->baby;
+		//std::cout << Bulle->baby;
 		Bulle->baby = 0;
 		Bulle_Custom *Bulle2 = new Bulle_Custom(Bulle->Coordonnee_Bulle.x(), Bulle->Coordonnee_Bulle.y());
 		Frame->addItem(Bulle2);
@@ -360,6 +360,7 @@ void Bubble_Trouble::bulle_event()
 		Bulle2->Player = Player;
 		Bulle2->Arrow = Arrow;
 		Bulle2->layers = 1;
+		BeBelist.append(Bulle2);
 	}
 }
 
@@ -388,7 +389,5 @@ void Bubble_Trouble::phoneme_control()
 		{
 			//Test
 		}
-	}	
+	}
 }
-
-
