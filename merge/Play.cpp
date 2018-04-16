@@ -221,7 +221,14 @@ void Bubble_Trouble::shoot_arrow()
 	Arrow = new Arrow_Custom(pos);
 	this->Frame->addItem(Arrow);
 	Bulle->Arrow = Arrow;
-
+	if (Bebelist.size() > 0)
+	{
+		for (int i = 0; i < Bebelist.size(); i++)
+		{
+			Bebelist[i]->Arrow = Arrow;
+			Bebelist[i]->Player = Player;
+		}
+	}
 }
 
 QGraphicsScene* Bubble_Trouble::get_Frame()
@@ -351,7 +358,7 @@ void Bubble_Trouble::bulle_event()
 	{
 		//std::cout << Bulle->baby;
 		Bulle->baby = 0;
-		Bulle_Custom *Bulle2 = new Bulle_Custom(Bulle->Coordonnee_Bulle.x(), Bulle->Coordonnee_Bulle.y());
+		Bebe_Bulle *Bulle2 = new Bebe_Bulle(Bulle->Coordonnee_Bulle.x(), Bulle->Coordonnee_Bulle.y());
 		Frame->addItem(Bulle2);
 		Bulle2->Line_Top_Item = Line_Top_Item;
 		Bulle2->Line_Right_Item = Line_Right_Item;
@@ -360,7 +367,7 @@ void Bubble_Trouble::bulle_event()
 		Bulle2->Player = Player;
 		Bulle2->Arrow = Arrow;
 		Bulle2->layers = 1;
-		BeBelist.append(Bulle2);
+		Bebelist.append(Bulle2);
 	}
 }
 
