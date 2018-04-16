@@ -36,36 +36,39 @@ Play::Play()
 	QObject::connect(Quit, SIGNAL(clicked()), this, SLOT(Quit_play()));
 }
 
-Play::Play(Options *options, Scores *scores)
+Play::Play(Options *option, Scores *scores)
 {
-QPushButton *Start = new QPushButton("Start");
-QPushButton *Quit = new QPushButton("Quit");
-QLabel *RandD = new QLabel("Production de l'�quipe P9!");
+	score = scores;
+	options = option;
 
-QHBoxLayout *Gametop = new QHBoxLayout;
-QVBoxLayout *Gamelist = new QVBoxLayout;
+	QPushButton *Start = new QPushButton("Start");
+	QPushButton *Quit = new QPushButton("Quit");
+	QLabel *RandD = new QLabel("Production de l'�quipe P9!");
 
-
-QWidget * widget = new QWidget();
-QGridLayout * layout = new QGridLayout(widget);
-
-Start->setFixedSize(100, 50);
-Quit->setFixedSize(100, 50);
-
-layout->addWidget(Start, 0, 0, 0, 0, Qt::AlignTop | Qt::AlignLeft);
-layout->addWidget(Quit, 0, 0, 1, 1, Qt::AlignVCenter | Qt::AlignLeft);
-layout->addWidget(RandD, 1, 0, 1, 1, Qt::AlignVCenter | Qt::AlignLeft);
-
-RandD->setStyleSheet("QLabel{background: transparent;}");
-Start->setStyleSheet("QPushButton{background: transparent;}");
-Quit->setStyleSheet("QPushButton{background: transparent;}");
+	QHBoxLayout *Gametop = new QHBoxLayout;
+	QVBoxLayout *Gamelist = new QVBoxLayout;
 
 
-setLayout(layout);
+	QWidget * widget = new QWidget();
+	QGridLayout * layout = new QGridLayout(widget);
 
-//connect
-QObject::connect(Start, SIGNAL(clicked()), this, SLOT(Start_play()));
-QObject::connect(Quit, SIGNAL(clicked()), this, SLOT(Quit_play()));
+	Start->setFixedSize(100, 50);
+	Quit->setFixedSize(100, 50);
+
+	layout->addWidget(Start, 0, 0, 0, 0, Qt::AlignTop | Qt::AlignLeft);
+	layout->addWidget(Quit, 0, 0, 1, 1, Qt::AlignVCenter | Qt::AlignLeft);
+	layout->addWidget(RandD, 1, 0, 1, 1, Qt::AlignVCenter | Qt::AlignLeft);
+
+	RandD->setStyleSheet("QLabel{background: transparent;}");
+	Start->setStyleSheet("QPushButton{background: transparent;}");
+	Quit->setStyleSheet("QPushButton{background: transparent;}");
+
+
+	setLayout(layout);
+
+	//connect
+	QObject::connect(Start, SIGNAL(clicked()), this, SLOT(Start_play()));
+	QObject::connect(Quit, SIGNAL(clicked()), this, SLOT(Quit_play()));
 }
 
 Play::~Play()
@@ -89,10 +92,9 @@ void Play::Start_play()
 {
 	QMessageBox::StandardButton reply;
 	reply = QMessageBox::question(this, "Start", "Ready ?", QMessageBox::Yes | QMessageBox::No);
-	if(reply == QMessageBox::Yes) {
+	if (reply == QMessageBox::Yes) {
 
-		test = new Bubble_Trouble;
-		test = new Bubble_Trouble(options, scores);
+		test = new Bubble_Trouble(options, score);
 		App.setCentralWidget(test);
 		//App.showMaximized();
 		App.showFullScreen();
@@ -100,12 +102,6 @@ void Play::Start_play()
 	else {
 	}
 }
-
-
-
-
-
-
 
 Bubble_Trouble::Bubble_Trouble()
 {
@@ -225,8 +221,11 @@ Bubble_Trouble::Bubble_Trouble()
 	std::cout << "Bulle y: " << Bulle->scenePos().y() << std::endl;
 }
 
-Bubble_Trouble(Option *option, Scores *scores)
+Bubble_Trouble::Bubble_Trouble(Options *options, Scores *score)
 {
+	//connect option et score
+	option = options;
+	scores = score;
 	//Cr�e la scene de jeu en plein �cran
 	this->setWindowState(Qt::WindowFullScreen);
 	Frame = new QGraphicsScene(geometry().x(), geometry().y(), 1900, 1070);//1900 1070
@@ -235,7 +234,7 @@ Bubble_Trouble(Option *option, Scores *scores)
 	temps = new QTimer;
 	temps->start(15);
 	connect(temps, SIGNAL(timeout()), Frame, SLOT(advance()));
-
+	
 	setStyleSheet("background-image:url(plain.png)");
 
 	//Ajout de lignes
@@ -458,13 +457,8 @@ void Bubble_Trouble::Death()
 		act.score = Player->score;
 		act.name = text;
 
-<<<<<<< HEAD
-			//Scores->add_scores(act);
-			
-=======
-		//Scores->add_scores(act);
+			scores->add_scores(act);
 
->>>>>>> ff18a4fcc5e479834274fd69b1da5ac504b0cad2
 			window()->close();
 		}
 	}

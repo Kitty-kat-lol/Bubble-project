@@ -9,15 +9,15 @@ Scores::Scores()
 	the_scores = new stru_scores[100];
 
 	the_scores[0].name = "BOB";
-	the_scores[0].score = "500000";
+	the_scores[0].score = 500000;
 	the_scores[1].name = "JAQUE123";
-	the_scores[1].score = "235000";
+	the_scores[1].score = 235000;
 	the_scores[2].name = "Claudette";
-	the_scores[2].score = "243000";
+	the_scores[2].score = 243000;
 	the_scores[3].name = "PAPA";
-	the_scores[3].score = "100100";
+	the_scores[3].score = 100100;
 	the_scores[4].name = "GERARD-LOL-0P";
-	the_scores[4].score = "500";
+	the_scores[4].score = 500;
 
 	QVBoxLayout *list = new QVBoxLayout;
 	QHBoxLayout *top = new QHBoxLayout;
@@ -45,11 +45,11 @@ Scores::Scores()
 	QLabel *fourth_n = new QLabel(the_scores[3].name);
 	QLabel *fifth_n = new QLabel(the_scores[4].name);
 
-	QLabel *first_s = new QLabel(the_scores[0].score);
-	QLabel *second_s = new QLabel(the_scores[1].score);
-	QLabel *third_s = new QLabel(the_scores[2].score);
-	QLabel *fourth_s = new QLabel(the_scores[3].score);
-	QLabel *fifth_s = new QLabel(the_scores[4].score);
+	QLabel *first_s = new QLabel(QString::number(the_scores[0].score));
+	QLabel *second_s = new QLabel(QString::number(the_scores[1].score));
+	QLabel *third_s = new QLabel(QString::number(the_scores[2].score));
+	QLabel *fourth_s = new QLabel(QString::number(the_scores[3].score));
+	QLabel *fifth_s = new QLabel(QString::number(the_scores[4].score));
 
 	box->addWidget(title, 0, 0);
 
@@ -93,8 +93,8 @@ void Scores::add_scores(stru_scores act)
 	int i = 0;
 	while (the_scores[i].name != "")
 	{
-		int a = the_scores[i].score.toInt();
-		int b = act.score.toInt();
+		int a = the_scores[i].score;
+		int b = act.score;
 
 		if (a <= b)
 		{
@@ -121,7 +121,7 @@ void Scores::gets_scores()
 		QString line = in.readLine();
 		QStringList list = line.split(' ', QString::SkipEmptyParts);
 		the_scores[i].name = list[0];
-		the_scores[i].score = list[1];
+		the_scores[i].score = list[1].toInt();
 		i = i + 1;
 
 	}
@@ -139,6 +139,7 @@ void Scores::w_scores()
 	while (the_scores[i].name != "")
 	{
 		out << the_scores[i].name << " " << the_scores[i].score << "\n";
+		std::cout << the_scores[i].name.toStdString() << " " << the_scores[i].score << "\n";
 		i = i + 1;
 	}
 	return;
@@ -147,20 +148,20 @@ void Scores::w_scores()
 void Scores::reinit_scores()
 {
 	the_scores[0].name = "BOB";
-	the_scores[0].score = "500000";
+	the_scores[0].score = 500000;
 	the_scores[1].name = "JAQUE123";
-	the_scores[1].score = "235000";
+	the_scores[1].score = 235000;
 	the_scores[2].name = "Claudette";
-	the_scores[2].score = "243000";
+	the_scores[2].score = 243000;
 	the_scores[3].name = "PAPA";
-	the_scores[3].score = "100100";
+	the_scores[3].score = 100100;
 	the_scores[4].name = "GERARD-LOL-0P";
-	the_scores[4].score = "500";
+	the_scores[4].score = 500;
 	int i = 5;
 	while (the_scores[i].name != "" && i != 99)
 	{
 		the_scores[i].name = "";
-		the_scores[i].score = "";
+		the_scores[i].score = 0;
 		i = i + 1;
 	}
 	return;

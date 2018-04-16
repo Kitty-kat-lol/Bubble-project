@@ -11,11 +11,11 @@
 
 #include <QFile>
 #include <QTextStream>
-
+#include <iostream>
 struct stru_scores
 {
 	QString name;
-	QString score;
+	qreal score;
 };
 
 class Scores :public QWidget

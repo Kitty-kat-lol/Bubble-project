@@ -53,7 +53,7 @@ class Bubble_Trouble : public QGraphicsView
 
 public:
 	Bubble_Trouble();
-	Bubble_Trouble(Option *option, Scores *scores);
+	Bubble_Trouble(Options *options, Scores *score);
 	~Bubble_Trouble();
 
 	void debug_position_bulle();
@@ -66,7 +66,8 @@ public:
 	void phoneme_control();
 
 	QList<Bebe_Bulle *> Bebelist;
-
+	Scores *scores;
+	Options *option;
 	QGraphicsScene* get_Frame();
 	Bulle_Custom* get_Bulle();
 
@@ -112,12 +113,14 @@ class Play :public QWidget
 	Q_OBJECT
 public:
 	Play();
-	Play(Option *option, Scores *scores);
+	Play(Options *option, Scores *scores);
 	~Play();
 
 	QPushButton *Start;
 	QPushButton *Quit;
 	Bubble_Trouble *test;
+	Scores *score;
+	Options *options;
 
 	public slots:
 
