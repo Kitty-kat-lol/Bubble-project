@@ -8,7 +8,7 @@ Play::Play()
 {
 	QPushButton *Start = new QPushButton("Start");
 	QPushButton *Quit = new QPushButton("Quit");
-	QLabel *RandD = new QLabel("Production de l'�quipe P9!");
+	QLabel *RandD = new QLabel("Production de l'equipe P9!");
 
 	QHBoxLayout *Gametop = new QHBoxLayout;
 	QVBoxLayout *Gamelist = new QVBoxLayout;
@@ -57,7 +57,7 @@ void Play::Quit_play()
 void Play::Start_play()
 {
 	QMessageBox::StandardButton reply;
-	reply = QMessageBox::question(this, "Start", "Pr�t ?", QMessageBox::Yes | QMessageBox::No);
+	reply = QMessageBox::question(this, "Start", "Ready ?", QMessageBox::Yes | QMessageBox::No);
 	if(reply == QMessageBox::Yes) {
 
 		test = new Bubble_Trouble;
@@ -90,7 +90,7 @@ Bubble_Trouble::Bubble_Trouble()
 /*	QPixmap pim("C:\\Users\casto\\Pictures\\Wallpapers\\raven_bird_flying_smoke_black_white_92907_1920x1080.jpg");
 	QGraphicsPixmapItem *back = new QGraphicsPixmapItem(pim);*/
 
-	setStyleSheet("background-image:url(plain.png)");
+	setStyleSheet("background-image:url(Stadium.png)");
 	//Frame->addItem(back);
 
 
@@ -331,7 +331,9 @@ void Bubble_Trouble::gamepad_control()
 
 void Bubble_Trouble::Death()
 {
-	if (Player->vies == 0)
+	bool ok;
+	QString text;
+	if (Player->vies <= 0)
 	{
 		temps->stop();
 		QMessageBox::StandardButton pause;
@@ -341,21 +343,21 @@ void Bubble_Trouble::Death()
 		bob += " \nScore : ";
 		bob += QString::number(Player->score);
 		pause = QMessageBox::question(this, "DEATH", bob, QMessageBox::Yes | QMessageBox::No);
-		if (pause == QMessageBox::No) {
+		if (pause == QMessageBox::No)
+		{
 			window()->close();
 		}
 		else if (pause == QMessageBox::Yes)
 		{
-			bool ok;
-    QString text = QInputDialog::getText(this, "Input",
-                                         "Votre nom", QLineEdit::Normal,
-                                         "", &ok);
+			
+			text = QInputDialog::getText(this, "Input", "Votre nom", QLineEdit::Normal, "", &ok);
+		}
     if (ok && !text.isEmpty()) {
     stru_scores act;
 		act.score = Player->score;
 		act.name = text;
 
-		//Scores->add_scores(act);
+			//Scores->add_scores(act);
 			
 			window()->close();
 		}

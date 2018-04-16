@@ -1,5 +1,6 @@
 #include "Bulle_custom.h"
 #include "Play.h"
+#include <cstdlib>
 
 Bulle_Custom::Bulle_Custom()
 {
@@ -7,7 +8,7 @@ Bulle_Custom::Bulle_Custom()
 	//Couleur de départ
 	
 	//Part avec un angle aléatoire
-	angle = (qrand() % 360);
+	angle = (rand() % 360);
 	//this->setRotation(angle);
 
 	//Commence dans le coin en haut à droite
@@ -29,7 +30,7 @@ Bulle_Custom::Bulle_Custom()
 Bulle_Custom::Bulle_Custom(qreal posx, qreal posy)
 {
 
-	angle = (qrand() % 360);
+	angle = (rand() % 360);
 
 	//Commence dans le coin en haut à droite
 	Coordonnee_Bulle.setX(posx);//posx
@@ -57,12 +58,25 @@ QRectF Bulle_Custom::boundingRect() const
 
 void Bulle_Custom::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)
 {
-	
+	int Random = rand() % 3;
 	QRectF hitbox = boundingRect();
 	QBrush couleur_centre(Qt::green);
 	QPixmap bkgnd;
-	bkgnd.load("player.png");
-	couleur_centre.setTexture(bkgnd);
+	if (Random = 0)
+	{
+		bkgnd.load("player.png");
+		couleur_centre.setTexture(bkgnd);
+	}
+	else if (Random = 1)
+	{
+		bkgnd.load("Prof.png");
+		couleur_centre.setTexture(bkgnd);
+	}
+	else if (Random = 2)
+	{
+		bkgnd.load("Denis.png");
+		couleur_centre.setTexture(bkgnd);
+	}
 	
 
 	if (scene()->collidingItems(this).isEmpty())
