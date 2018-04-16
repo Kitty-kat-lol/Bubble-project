@@ -41,6 +41,7 @@ public:
 	bool O_detected();
 	void set_debug(bool activation);
 	bool button_pressed();
+	int isok;
 
 private:
 	

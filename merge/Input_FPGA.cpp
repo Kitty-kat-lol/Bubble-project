@@ -11,10 +11,12 @@ Input_FPGA::Input_FPGA()
 	if (Carte.estOk())
 	{
 		cout << "Connection avec la carte établie" << endl;
+		isok = 1;
 	}
 	else if(!Carte.estOk())
 	{
 		cout << "Probleme de connection avec la carte" << endl;
+		isok = 0;
 	}
 
 	//État des filtres

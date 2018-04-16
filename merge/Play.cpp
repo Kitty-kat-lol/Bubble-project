@@ -365,28 +365,30 @@ void Bubble_Trouble::bulle_event()
 
 void Bubble_Trouble::phoneme_control()
 {
-	Carte->read();
-	if (Carte->A_detected())
+	if (Carte->isok == 1)
 	{
-		//Action
-	}
-	else if (Carte->O_detected())
-	{
-		//Action
-	}
-	else if (Carte->I_detected())
-	{
-		//Action
-	}
-	else if(Carte->U_detected())
-	{
-		//Action
-	}
-	else if (Carte->button_pressed())
-	{
-		//Test
-	}
-	
+		Carte->read();
+		if (Carte->A_detected())
+		{
+			//Action
+		}
+		else if (Carte->O_detected())
+		{
+			//Action
+		}
+		else if (Carte->I_detected())
+		{
+			//Action
+		}
+		else if (Carte->U_detected())
+		{
+			//Action
+		}
+		else if (Carte->button_pressed())
+		{
+			//Test
+		}
+	}	
 }
 
 
