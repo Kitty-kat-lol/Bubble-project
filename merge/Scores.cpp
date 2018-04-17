@@ -33,7 +33,33 @@ Scores::Scores()
 	QLabel *title = new QLabel("Top Scores");
 
 	QGridLayout *box = new QGridLayout;
-	QLabel *first = new QLabel("First");
+	textbox->setStyleSheet("background-image:url(Wall_of_Fame.png);font: bold; color: Orange;font-size: 20px;height: 36px;width: 120px;");
+	box->addWidget(textbox);
+	QFile file("scores.txt");
+	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+		return;
+
+	QTextStream in(&file);
+	int i = 0;
+	while (!in.atEnd() && i != 99) {
+		QString line = in.readLine();
+		std::cout << "" << line.toStdString() << endl;
+		QStringList list = line.split(' ', QString::SkipEmptyParts);
+		the_scores[i].name = list[0];
+		the_scores[i].score = list[1].toInt();
+		i = i + 1;
+
+	}
+	 i = 0;
+	 QString Text = "";
+	while (the_scores[i].name != "")
+	{
+		Text +=( the_scores[i].name + " "+ QString::number(the_scores[i].score) +" \n");
+		std::cout << the_scores[i].name.toStdString() << " " << the_scores[i].score << "\n";
+		i = i + 1;
+	}
+	textbox->setText(Text);
+	/*QLabel *first = new QLabel("First");
 	QLabel *second = new QLabel("Second");
 	QLabel *third = new QLabel("Third");
 	QLabel *fourth = new QLabel("Fourth");
@@ -70,7 +96,7 @@ Scores::Scores()
 	box->addWidget(third_s, 3, 3);
 	box->addWidget(fourth_s, 4, 3);
 	box->addWidget(fifth_s, 5, 3);
-
+	*/
 	list->addLayout(top);
 	list->addLayout(box);
 
@@ -117,14 +143,14 @@ void Scores::gets_scores()
 
 	QTextStream in(&file);
 	int i = 0;
-	while (!in.atEnd() && i != 99) {
-		QString line = in.readLine();
-		QStringList list = line.split(' ', QString::SkipEmptyParts);
-		the_scores[i].name = list[0];
-		the_scores[i].score = list[1].toInt();
+	QString Text = "";
+	while (the_scores[i].name != "")
+	{
+		Text += (the_scores[i].name + " " + QString::number(the_scores[i].score) + " \n");
+		std::cout << the_scores[i].name.toStdString() << " " << the_scores[i].score << "\n";
 		i = i + 1;
-
 	}
+	textbox->setText(Text);
 
 }
 

@@ -43,7 +43,7 @@ Play::Play(Options *option, Scores *scores)
 
 	QPushButton *Start = new QPushButton("Start");
 	QPushButton *Quit = new QPushButton("Quit");
-	QLabel *RandD = new QLabel("Production de l'�quipe P9!");
+	QLabel *RandD = new QLabel("Production de l'equipe P9!");
 
 	QHBoxLayout *Gametop = new QHBoxLayout;
 	QVBoxLayout *Gamelist = new QVBoxLayout;

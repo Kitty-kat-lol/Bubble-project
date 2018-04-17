@@ -11,6 +11,7 @@
 
 #include <QFile>
 #include <QTextStream>
+#include <QTextedit>
 #include <iostream>
 struct stru_scores
 {
@@ -26,7 +27,8 @@ public:
 	~Scores();
 
 	stru_scores *the_scores;
-	
+
+	QTextEdit *textbox = new QTextEdit;
 	QPushButton *reinit;
 	QPushButton *save;
 	QPushButton *act;

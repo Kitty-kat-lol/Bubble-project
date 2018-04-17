@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
 
 		label->setMovie(movie);
 		play_layout->addWidget(label);*/
-		play->setStyleSheet("background-image:url(plain.png);font: bold; color: blue;font-size: 36px;height: 48px;width: 120px;");
+		play->setStyleSheet("background-image:url(bubble.png);font: bold; color: Orange;font-size: 36px;height: 48px;width: 120px;");
 
 		play->setLayout(play_layout);
 
