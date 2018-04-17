@@ -44,13 +44,14 @@
 #include <QGamepad>
 #include <QGraphicsObject>
 #include <Qlist>
+#include <QObject>
 
 
 
 
-class Bubble_Trouble : public QGraphicsView
+class Bubble_Trouble : public  QGraphicsView, QObject
 {
-
+	Q_OBJECT
 public:
 	Bubble_Trouble();
 	Bubble_Trouble(Options *options, Scores *score);
@@ -60,9 +61,8 @@ public:
 	void shoot_arrow();
 	void keyPressEvent(QKeyEvent *event);
 	void customEvent(QEvent *input);
-	void gamepad_control();
-	void Death();
-	void bulle_event();
+	
+	
 	void phoneme_control();
 
 	QList<Bebe_Bulle *> Bebelist;
@@ -73,7 +73,7 @@ public:
 
 	QTimer* get_temps();
 
-
+	bool debug;
 
 	void collision_bulle();
 	//private:
@@ -92,13 +92,20 @@ public:
 	Bulle_Custom *Bulle;
 	Player_custom *Player;
 	QTimer *temps;
+	QTimer *Thread_FPGA;
+	QTimer *events;
+	QTimer *Thread_Xbox;
 	Arrow_Custom *Arrow;
 	//Plan_Frame Plan;
 
 	QGamepad *Xbox;
 	Input_FPGA *Carte;
-
-
+	
+	public slots:
+	void gamepad_control();
+	void Death();
+	void bulle_event();
+	void set_bulle_speed(int pourcent);
 };
 
 

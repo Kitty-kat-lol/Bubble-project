@@ -9,6 +9,7 @@
 #include <QThread>
 #include <iostream>
 #include <Qmessagebox>
+#include <QObject>
 
 
 class Bulle_Custom : public QGraphicsItem
@@ -20,7 +21,7 @@ public:
 	~Bulle_Custom();
 
 	QRectF boundingRect() const;
-	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = Q_NULLPTR);
+	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = Q_NULLPTR);
 //private:
 	QGraphicsLineItem *Line_Top_Item;
 	QGraphicsLineItem *Line_Left_Item;
@@ -44,6 +45,8 @@ public:
 	int rayon;
 	int layers;
 	void collision();
+	
+	void vitesse(int pourcent);
 protected:
 	void advance(int phase);
 public slots :

@@ -48,6 +48,10 @@ public:
 	QRadioButton *deux_vies;
 	QRadioButton *trois_vies;
 
+	QCheckBox *Debug_FPGA ;
+	QCheckBox *Debug_CMD;
+	QCheckBox *Fille;
+
 	QSlider *Vitesse;
 	QSlider *Chances;
 

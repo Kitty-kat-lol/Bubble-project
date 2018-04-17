@@ -50,7 +50,7 @@ public:
 	void debug_position_player();
 	//void check_death();
 	
-
+	
 
 	
 public slots :
@@ -58,12 +58,12 @@ public slots :
 	void move_left();
 	void set_lives(int nb_vies);
 	void add_score(int point);
-	void set_1vie(bool etat);
-	//void set_2vie(bool etat);
-	//void set_3vie(bool etat);
+	void set_1vie(int etat);
+	void set_2vies(int etat);
+	void set_3vies(int etat);
+	
 
-//signals:
-	//void send_death();
+
 };
 
 

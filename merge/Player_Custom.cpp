@@ -158,6 +158,22 @@ void Player_custom::debug_position_player()
 	//std::cout << "Position player y: " << Coordonnee_Player.ry() << std::endl << std::endl;
 }
 
+void Player_custom::set_2vies(int etat)
+{
+	if (etat == 3)
+	{
+		vies = 2;
+	}
+}
+
+void Player_custom::set_3vies(int etat)
+{
+	if (etat == 3)
+	{
+		vies = 3;
+	}
+}
+
 /*void Player_custom::check_death()
 {
 	if (vies == 0)
@@ -182,9 +198,9 @@ void Player_custom::add_score(int point)
 	score += Point;
 }
 
-void Player_custom::set_1vie(bool etat)
+void Player_custom::set_1vie(int etat)
 {
-	if (etat == true)
+	if (etat == 3)
 	{
 		vies = 1;
 	}

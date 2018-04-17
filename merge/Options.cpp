@@ -13,26 +13,26 @@ Options::Options()
 
 	QLabel *Titre = new QLabel("OPTIONS");
 
-	QCheckBox *Debug_FPGA = new QCheckBox("Debug FPGA");
-	QCheckBox *Debug_CMD = new QCheckBox("Debug CMD");
-	QCheckBox *Fille = new QCheckBox("Fille");
+	Debug_FPGA = new QCheckBox("Debug FPGA");
+	Debug_CMD = new QCheckBox("Debug CMD");
+	Fille = new QCheckBox("Fille");
 	
 
 	QWidget *Vies = new QWidget;
 	QHBoxLayout *Nb_vies = new QHBoxLayout;
-	une_vie = new QRadioButton("1 vie (Multiplicateur x3)");
+	une_vie = new QRadioButton("1 vie");
 	une_vie->setChecked(true);
-	deux_vies = new QRadioButton("2 vies (Multiplicateur x2)");
-	trois_vies = new QRadioButton("3 vies (Multiplicateur x1)");
+	deux_vies = new QRadioButton("2 vies");
+	trois_vies = new QRadioButton("3 vies");
 	Nb_vies->addWidget(une_vie);
 	Nb_vies->addWidget(deux_vies);
 	Nb_vies->addWidget(trois_vies);
 	Vies->setLayout(Nb_vies);
 
-	QLabel *Titre_vitesse = new QLabel("Vitesse de la bulle");
+	QLabel *Titre_vitesse = new QLabel("Vitesse de deplacement du joueur/joueuse");
 	Vitesse = new QSlider(Qt::Horizontal);
 	Vitesse->setMaximumWidth(200);
-	Vitesse->setSliderPosition(30);
+	Vitesse->setSliderPosition(60);
 	QLabel *Titre_Chances = new QLabel("Chances de power-ups");
 	QSlider *Chances = new QSlider(Qt::Horizontal);
 	Chances->setMaximumWidth(200);

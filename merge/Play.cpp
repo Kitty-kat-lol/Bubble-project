@@ -112,7 +112,7 @@ Bubble_Trouble::Bubble_Trouble()
 	//Cr�e un timer qui a ticker � chaque 20 msecondes et trigger la fonction advance pour les animations
 	temps = new QTimer;
 	temps->start(15);
-	connect(temps, SIGNAL(timeout()), Frame, SLOT(advance()));
+	QObject::connect(temps, SIGNAL(timeout()), Frame, SLOT(advance()));
 
 	//tentative de background
 /*	QPixmap pim("C:\\Users\casto\\Pictures\\Wallpapers\\raven_bird_flying_smoke_black_white_92907_1920x1080.jpg");
@@ -233,7 +233,7 @@ Bubble_Trouble::Bubble_Trouble(Options *options, Scores *score)
 	//Cr�e un timer qui a ticker � chaque 20 msecondes et trigger la fonction advance pour les animations
 	temps = new QTimer;
 	temps->start(15);
-	connect(temps, SIGNAL(timeout()), Frame, SLOT(advance()));
+	QObject::connect(temps, SIGNAL(timeout()), Frame, SLOT(advance()));
 	
 	setStyleSheet("background-image:url(Stadium.png)");
 
@@ -285,13 +285,63 @@ Bubble_Trouble::Bubble_Trouble(Options *options, Scores *score)
 
 	//Pour les phonemes:
 	Carte = new Input_FPGA;
-	QTimer *thread_FPGA = new QTimer;
-	thread_FPGA->start(20);
-	QObject::connect(thread_FPGA, SIGNAL(timeout()), Carte, SLOT(call_read()));
+	Thread_FPGA = new QTimer;
+	Thread_FPGA->start(15);
+	events = new QTimer;
+	events->start(15);
+	
+	if (Carte->isok)
+	{
+		QObject::connect(Thread_FPGA, SIGNAL(timeout()), Carte, SLOT(call_read()));
+		QObject::connect(Carte, SIGNAL(O_out()), Player, SLOT(move_right()));
+		QObject::connect(Carte, SIGNAL(A_out()), Player, SLOT(move_left()));
+		QObject::connect(Carte, SIGNAL(U_out()), this, SLOT(shoot_arrow()));
 
+		//Debug FPGA
+		if (options->Debug_FPGA->isChecked())
+		{
+			Carte->set_debug(true);
+		}
+	}
+	QObject::connect(events, SIGNAL(timeout()), this, SLOT(bulle_event()));
+	QObject::connect(events, SIGNAL(timeout()), this, SLOT(Death()));
+
+	Thread_Xbox = new QTimer;
+	Thread_Xbox->start(15);
+	QObject::connect(Thread_Xbox, SIGNAL(timeout()), this, SLOT(gamepad_control()));
+
+	//Nb de vies
+	if (options->une_vie->isChecked())
+	{
+		Player->vies = 1;
+	}
+	if (options->deux_vies->isChecked())
+	{
+		Player->vies = 2;
+	}
+	if (options->trois_vies->isChecked())
+	{
+		Player->vies = 3;
+	}
+	
+
+	//Vitesse du joueur
+	this->Player->deplacement_x = (options->Vitesse->sliderPosition());
+	
+	debug = false;
+	if (options->Debug_CMD->isChecked())
+	{
+		debug = true;
+	}
+	
+	
 	//Bulle->setPos()
-	std::cout << "Bulle x: " << Bulle->scenePos().x() << std::endl;
-	std::cout << "Bulle y: " << Bulle->scenePos().y() << std::endl;
+	if (debug)
+	{
+		std::cout << "Bulle x: " << Bulle->scenePos().x() << std::endl;
+		std::cout << "Bulle y: " << Bulle->scenePos().y() << std::endl;
+	}
+	
 }
 
 Bubble_Trouble::~Bubble_Trouble()
@@ -303,8 +353,12 @@ void Bubble_Trouble::debug_position_bulle()
 {
 	QPointF coordonne_bulle = Bulle->scenePos();
 
-	std::cout << "Pos x: " << Bulle->scenePos().rx() << std::endl;
-	std::cout << "Pos y: " << Bulle->scenePos().ry() << std::endl << std::endl;
+	if (debug)
+	{
+		std::cout << "Pos x: " << Bulle->scenePos().rx() << std::endl;
+		std::cout << "Pos y: " << Bulle->scenePos().ry() << std::endl << std::endl;
+	}
+	
 
 }
 
@@ -312,6 +366,10 @@ void Bubble_Trouble::shoot_arrow()
 {
 	if (Frame->items().contains(Arrow))
 	{
+		if (debug)
+		{
+			std::cout << "Arrow deleted..." << std::endl;
+		}
 		delete Arrow;
 	}
 
@@ -364,8 +422,7 @@ void Bubble_Trouble::keyPressEvent(QKeyEvent *event)
 {
 	int count_escape = 0;
 	int test = (qrand() % 360);
-	Death();
-	bulle_event();
+	
 	if (event->key() == Qt::Key_A || Xbox->buttonLeft())
 	{
 		Player->move("left");
@@ -400,7 +457,7 @@ void Bubble_Trouble::keyPressEvent(QKeyEvent *event)
 			}
 		}
 	}
-	gamepad_control();
+	
 
 
 }
@@ -429,12 +486,30 @@ void Bubble_Trouble::gamepad_control()
 
 }
 
+void Bubble_Trouble::set_bulle_speed(int pourcent)
+{
+	this->Bulle->vitesse(pourcent);
+	if (debug)
+	{
+		std::cout << "Pourcent: " << pourcent << std::endl;
+	}	
+}
+
 void Bubble_Trouble::Death()
 {
+	
+
 	bool ok;
 	QString text;
 	if (Player->vies <= 0)
 	{
+		if (debug)
+		{
+			std::cout << "Mort!" << std::endl;
+		}
+		events->stop();
+		Thread_FPGA->stop();
+		Thread_Xbox->stop();
 		temps->stop();
 		QMessageBox::StandardButton pause;
 		QString bob = "Do you want to save your score?";
@@ -468,7 +543,11 @@ void Bubble_Trouble::bulle_event()
 {
 	if (Bulle->baby == 1)
 	{
-		//std::cout << Bulle->baby;
+		if (debug)
+		{
+			std::cout << Bulle->baby;
+		}
+		
 		Bulle->baby = 0;
 		Bebe_Bulle *Bulle2 = new Bebe_Bulle(Bulle->Coordonnee_Bulle.x(), Bulle->Coordonnee_Bulle.y());
 		Frame->addItem(Bulle2);

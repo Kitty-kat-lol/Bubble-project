@@ -139,6 +139,12 @@ void Bulle_Custom::collision()
 
 }
 
+void Bulle_Custom::vitesse(int pourcent)
+{
+	qreal speed_to_set = 0;
+	speed_to_set = 16.666666 *(pourcent / 100);
+}
+
 void Bulle_Custom::advance(int phase)
 {
 	if (!phase)
